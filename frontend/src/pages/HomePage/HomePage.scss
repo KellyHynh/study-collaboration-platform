@@ -7,12 +7,46 @@
         display: grid;
         grid-template-columns: 1fr 3fr 1fr;
         gap: 24px;
-        padding: 24px 40px;
+        padding: 0 40px; // chỉ giữ padding ngang, bỏ padding dọc ở đây
     }
 
-    &__sidebar,
-    &__main,
+    &__sidebar {
+        min-width: 0;
+        margin-left: -30px;
+        margin-right: 35px;
+        padding-top: 24px; // padding dọc chuyển vào đây, để border-right chạm đúng trên/dưới
+        padding-bottom: 24px;
+        border-right: 1px solid #eee;
+    }
+
     &__activity {
         min-width: 0;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        padding-left: 20px;
+        border-left: 1px solid #eee;
     }
+
+    &__main {
+        min-width: 0;
+        margin-left: -59px;
+        margin-right: -24px; // lấn qua đúng khoảng gap bên phải, để nền xám chạm border activity
+        padding-top: 24px;
+        padding-bottom: 24px;
+        padding-right: 24px; // bù lại để nội dung bên trong không bị đẩy sát mép sau khi lấn margin
+        padding-left: 24px; // bù lại để nội dung bên trong không bị đẩy sát mép sau khi lấn margin
+        background: #fafafa; // giờ sẽ tự chạm sát 2 viền trái/phải của cột, không hụt vào nữa
+    }
+}
+
+// Header - đổ bóng nhẹ phía dưới
+.header { // đổi đúng theo tên class thật của Header.scss
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
+}
+
+// Footer - viền phía trên
+.footer { // đổi đúng theo tên class thật của Footer.scss
+    border-top: 1px solid #eee;
 }

@@ -1,8 +1,11 @@
 import bem from "@/utils/bem";
+import "./CourseCard.scss";
+import { useNavigate } from "react-router-dom";
 
 const b = bem("course-card");
 
 function CourseCard({
+    id,
     image,
     category,
     name,
@@ -11,7 +14,10 @@ function CourseCard({
     rating,
     progress
 }) {
+    const navigate = useNavigate();
+
     let status;
+    
 
     if (progress === 0) {
         status = "New";
@@ -21,12 +27,23 @@ function CourseCard({
         status = "Completed";
     }
 
+    const handleClick = () => {
+        navigate(`/courses/${id}`);
+    };
+
     return (
-        <article className={b()}>
+        <article className={b()} onClick={handleClick}>
             <div className={b("image")}>
                 <img src={image} alt={name} />
 
                 <span className={b("status")}>
+                    {status}
+                </span>
+                <span
+                    className={b("status", {
+                        completed: progress === 100
+                    })}
+                >
                     {status}
                 </span>
             </div>
@@ -58,7 +75,9 @@ function CourseCard({
 
                     <div className={b("progress-bar")}>
                         <div
-                            className={b("progress-bar-fill")}
+                            className={b("progress-bar-fill", {
+                                completed: progress === 100
+                            })}
                             style={{ width: `${progress}%` }}
                         />
                     </div>

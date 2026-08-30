@@ -1,7 +1,7 @@
 import Header from "../../components/Header/Header";
 import SideMenu from "./sections/SideMenu";
 import MainContent from "./sections/MainContent/MainContent";
-import ActivityPanel from "./sections/ActivityPanel";
+import ActivityPanel from "./sections/Notifications";
 import Footer from "../../components/Footer/Footer";
 import "./HomePage.scss";
 import bem from "../../utils/bem";

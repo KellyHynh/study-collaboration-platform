@@ -1,0 +1,160 @@
+.course-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    font-family: inherit;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease; // để đổ bóng mượt khi hover
+
+    &:hover {
+        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.12); // đổ bóng mờ thêm ở dưới khi hover
+    }
+
+    // ===== Image section =====
+    &__image {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden; // bắt buộc để ảnh zoom không tràn ra ngoài bo góc
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease; // mượt khi zoom
+        }
+    }
+
+    &:hover &__image img {
+        transform: scale(1.08); // zoom nhẹ khi hover, giống course-card-mini
+    }
+
+    &__status {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+        background: #fff;
+        color: #7c3aed; // mặc định "In Progress" - tím
+    }
+
+    // Nếu bạn truyền thêm class modifier theo status, ví dụ course-card__status_completed
+    &__status_completed {
+        background: #d1fae5;
+        color: #059669;
+    }
+
+    &__play {
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+    }
+
+    // ===== Info section =====
+    &__info {
+        padding: 16px 18px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    &__category {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #8b8fa3;
+        margin: 0;
+    }
+
+    &__name {
+        font-size: 17px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 2px 0 0;
+    }
+
+    &__instructor {
+        font-size: 14px;
+        color: #9a9ea8;
+        margin: 0 0 8px;
+    }
+
+    &__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #6b6f7b;
+        margin-bottom: 10px;
+
+        span:last-child {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+    }
+
+    // ===== Progress =====
+    &__progress {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    &__progress-header {
+        display: none; // ảnh không hiện chữ "Progress", chỉ hiện % dưới bar
+    }
+
+    &__progress-bar {
+        width: 100%;
+        height: 6px;
+        border-radius: 999px;
+        background: #eceef2;
+        overflow: hidden;
+    }
+
+    &__progress-bar-fill {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #8b5cf6, #a855f7); // tím cho "In Progress"
+        transition: width 0.3s ease;
+    }
+    
+    &__progress-bar-fill_completed {
+        background: linear-gradient(90deg, #10b981, #34d399);
+    }
+
+    // % hiển thị dưới bar, canh phải
+    &__progress-percent {
+        align-self: flex-end;
+        font-size: 13px;
+        font-weight: 600;
+        color: #6b6f7b;
+    }
+
+    // Modifier khi hoàn thành 100% - progress bar màu xanh lá
+    &_completed {
+        .course-card__progress-bar-fill {
+            background: linear-gradient(90deg, #10b981, #34d399);
+        }
+    }
+}

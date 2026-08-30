@@ -1,0 +1,48 @@
+.rating-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    &__icons {
+        display: flex;
+        gap: 2px;
+    }
+
+    &__star {
+        position: relative; // làm mốc để star-fill định vị absolute theo đúng star này
+        display: inline-flex;
+        width: 16px; // cố định kích thước, không phụ thuộc font-size/zoom cha
+        height: 16px;
+        flex-shrink: 0; // không bị bóp khi màn hình nhỏ
+    }
+
+    &__star-base {
+        width: 100%;
+        height: 100%;
+        color: #e5e7eb; // sao nền - xám nhạt (chưa fill)
+    }
+
+    &__star-fill {
+        position: absolute; // đè chính xác lên star-base, không đẩy layout
+        top: 0;
+        left: 0;
+        height: 100%;
+        overflow: hidden; // cắt icon theo % width
+        color: #f59e0b; // sao đã fill - vàng amber
+        display: flex;
+
+        // Icon bên trong phải giữ nguyên kích thước gốc (bằng star-base),
+        // không co lại theo width% của cha, nếu không sao sẽ bị bóp méo
+        img, svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+    }
+
+    &__value {
+        font-size: 13px;
+        font-weight: 600;
+        color: #1a1a1a;
+    }
+}

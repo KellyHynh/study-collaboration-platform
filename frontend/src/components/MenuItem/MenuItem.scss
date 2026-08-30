@@ -1,0 +1,71 @@
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 14px;
+    border-radius: 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    // Icon - mặc định màu đen
+    &__icon {
+        display: flex;
+        align-items: center;
+        color: #1a1a1a;
+        transition: color 0.2s ease;
+    }
+
+    // Title - mặc định màu đen
+    &__title {
+        flex: 1;
+        color: #1a1a1a;
+        font-weight: 500;
+        font-size: 17px;
+        transition: color 0.2s ease;
+    }
+
+    // Chevron - chỉ hiện khi active
+    &__arrow {
+        display: flex;
+        align-items: center;
+        color: #fff;
+    }
+
+    // Badge - đỏ mờ, tròn, không viền
+    &__badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 20px;
+        height: 20px;
+        padding: 0 6px;
+        border-radius: 999px;
+        background: rgba(239, 68, 68, 0.15); // đỏ mờ, không viền
+        color: #ef4444;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    // Trạng thái active - nền tím pastel, chữ trắng
+    &_active {
+        background: #42148d; // tím (chỉnh lại tông pastel tuỳ ý, vd: #8b5cf6)
+
+        .menu-item__icon {
+            filter: brightness(0) invert(1);
+        }
+        .menu-item__title {
+            color: #fff;
+        }
+        .menu-item__arrow {
+            filter: brightness(0) invert(1);
+        }
+    }
+
+    // &:hover:not(&_active) {
+    //     background: #7563ce;
+    // }
+}
