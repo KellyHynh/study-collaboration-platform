@@ -1,0 +1,38 @@
+.notification { // đổi tên theo đúng block bạn dùng
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; // title trái, count phải
+        gap: 8px;
+    }
+
+    &__title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1a1a1a; // đen
+        margin: 0;
+        text-align: left;
+    }
+
+    &__count {
+        font-size: 12px; // nhỏ hơn title
+        font-weight: 600;
+        color: #fff; // chữ trắng
+        background: #7c3aed; // nền tím
+        padding: 3px 10px;
+        border-radius: 999px; // bo tròn viên thuốc
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; // khoảng cách nhỏ giữa các notification-card
+        padding-top: 35px; // khoảng cách trên đầu danh sách notification-card
+    }
+}

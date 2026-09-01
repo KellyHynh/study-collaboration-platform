@@ -1,0 +1,122 @@
+.notification-card {
+    display: flex;
+    align-items: flex-start; // icon + content căn trên, không giữa
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb; // viền quanh card
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    &__icon {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        //background: #f3e8ff; // mặc định tím nhạt (bell)
+        color: #7c3aed; // tím đậm - icon lucide sẽ ăn theo màu này
+    }
+
+    // Modifier theo loại thông báo
+    &__icon_bell {
+        //background: #f3e8ff;
+        color: #7c3aed; // tím đậm
+    }
+
+    &__icon_message {
+        //background: #dcfce7;
+        color: #16a34a; // xanh lá
+    }
+
+    &__icon_time {
+        //background: #fef3c7;
+        color: #d97706; // cam
+    }
+
+    &__content {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; // 3 nội dung (title, description, time) căn trái
+        gap: 2px;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        width: 100%; // để title flex:1 đẩy dot/X đúng vị trí, không ảnh hưởng căn trái
+    }
+
+    &__title {
+        font-size: 14px;
+        font-weight: 600;
+        color: #6b21a8;
+        margin: 0;
+        flex: 1;
+        text-align: left;
+    }
+
+    &__unread {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #a855f7;
+        flex-shrink: 0;
+    }
+
+    &__delete {
+        border: none;
+        background: none;
+        cursor: pointer;
+        color: #b0b3bb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2px;
+        flex-shrink: 0;
+
+        &:hover {
+            color: #6b7280;
+        }
+    }
+
+    &__description {
+        font-size: 13px;
+        color: #4b5563;
+        margin: 0;
+        line-height: 1.4;
+        text-align: left;
+    }
+
+    &__time {
+        font-size: 12px;
+        color: #f59e0b; // cam
+        margin-top: 2px;
+        text-align: left;
+    }
+
+    &_unread {
+        background: #f5f0ff;
+        border-color: #e9d8fd;
+
+        &:hover {
+            background: #efe7ff;
+        }
+    }
+
+    &_read {
+        background: #fff;
+        border-color: #e5e7eb;
+
+        &:hover {
+            background: #f9fafb;
+        }
+    }
+}

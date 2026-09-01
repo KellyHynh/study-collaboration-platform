@@ -1,0 +1,32 @@
+.course-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &__button {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 0;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background-color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        color: #374151;
+        cursor: pointer;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        &:hover {
+            background-color: #f9fafb;
+            border-color: #d1d5db;
+        }
+    }
+}

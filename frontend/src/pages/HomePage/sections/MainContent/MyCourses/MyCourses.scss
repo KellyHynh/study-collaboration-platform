@@ -1,0 +1,94 @@
+.my-courses {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+
+    // ===== Top row: header (trái) + filters (phải) cùng hàng =====
+    &__top {
+        display: flex;
+        align-items: center; // canh giữa theo chiều dọc so với header 2 dòng
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap; // để màn nhỏ tự xuống dòng, không vỡ layout
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        align-items: flex-start;
+        text-align: left;
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        p {
+            font-size: 14px;
+            color: #9a9ea8;
+            margin: 0;
+        }
+    }
+
+    &__filters {
+        display: flex;
+        gap: 10px;
+        flex-shrink: 0; // không bị bóp lại khi header dài
+
+        button {
+            padding: 12px 20px; // to hơn, gần bằng chiều cao 2 dòng header
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            color: #4b5563;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background-color 0.2s ease, color 0.2s ease;
+
+            &:hover {
+                background: #f5f3ff;
+            }
+        }
+
+        &-active {
+            background: #6d28d9 !important;
+            border-color: #6d28d9 !important;
+            color: #fff !important;
+
+            &:hover {
+                background: #6d28d9 !important;
+            }
+        }
+    }
+
+    &__course-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__view-all {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 500;
+        color: #9a9ea8;
+        padding: 0;
+
+        &:hover {
+            color: #6b7280;
+        }
+    }
+}

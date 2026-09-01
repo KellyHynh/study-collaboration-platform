@@ -1,0 +1,106 @@
+.enrollment-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+
+    &__image {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        display: block;
+    }
+
+    &__content {
+        padding: 20px;
+    }
+
+    // ----- Trạng thái đã đăng ký -----
+
+    &__status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #7c3aed;
+
+        svg {
+            width: 18px;
+            height: 18px;
+            color: #7c3aed;
+        }
+    }
+
+    &__progress {
+        margin-bottom: 20px;
+    }
+
+    &__progress-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+        font-size: 13px;
+
+        span:first-child {
+            color: #6b7280;
+        }
+
+        span:last-child {
+            font-weight: 700;
+            color: #7c3aed;
+        }
+    }
+
+    &__progress-bar {
+        width: 100%;
+        height: 6px;
+        border-radius: 999px;
+        background-color: #ede9fe;
+        overflow: hidden;
+    }
+
+    &__progress-value {
+        height: 100%;
+        border-radius: 999px;
+        background-color: #7c3aed;
+        transition: width 0.3s ease;
+    }
+
+    // ----- Trạng thái chưa đăng ký -----
+
+    &__title {
+        margin: 0 0 8px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #111827;
+    }
+
+    &__description {
+        margin: 0 0 20px;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #6b7280;
+    }
+
+    // ----- Nút chung -----
+
+    &__button {
+        width: 100%;
+        padding: 12px 0;
+        border: none;
+        border-radius: 8px;
+        background-color: #7c3aed;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: #6d28d9;
+        }
+    }
+}

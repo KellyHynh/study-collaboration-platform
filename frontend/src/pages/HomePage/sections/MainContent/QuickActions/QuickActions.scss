@@ -1,0 +1,229 @@
+.quick-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    // ----- 2 nút chính -----
+
+    &__action {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        // Nút "Tham gia lớp" - outline tím
+        &:first-child {
+            background-color: #fff;
+            border: 1px solid #ddd6fe;
+            color: #7c3aed;
+
+            &:hover {
+                background-color: #f5f3ff;
+            }
+        }
+
+        // Nút "Tạo khóa học" - solid tím
+        &:last-of-type {
+            border: none;
+            background-color: #7c3aed;
+            color: #fff;
+
+            &:hover {
+                background-color: #6d28d9;
+            }
+        }
+    }
+
+    // ----- Overlay -----
+
+    &__overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(17, 24, 39, 0.5);
+    }
+
+    // ----- Form modal -----
+
+    &__join-form {
+        width: 100%;
+        max-width: 420px;
+        background-color: #fff;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;   // ⬅ thêm dòng này, quan trọng nhất
+        text-align: left;       // ⬅ chặn text bị canh giữa
+        gap: 16px;
+        box-sizing: border-box;
+    }
+
+    &__join-header {
+        display: flex;
+        flex-direction: row;      // ⬅ ép rõ ràng, tránh bị kế thừa column
+        flex-wrap: nowrap;        // ⬅ chặn icon + text bị xuống dòng
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 100%;
+        gap: 12px;
+    }
+
+    &__join-main {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 100%;
+        gap: 12px;
+    }
+
+    &__join-icon {
+        flex: 0 0 auto;            // ⬅ thay vì chỉ flex-shrink, ép luôn flex-basis
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background-color: #ede9fe;
+        color: #7c3aed;
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    &__join-header-text {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;    // ⬅ title + description xếp dọc BÊN TRONG khối text
+        gap: 2px;
+    }
+
+    &__join-title {
+        margin: 0 0 2px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #111827;
+        text-align: left;
+    }
+
+    &__join-description {
+        margin: 0;
+        font-size: 13px;
+        color: #6b7280;
+        text-align: left;
+    }
+
+    &__close {
+        flex-shrink: 0;
+        margin-left: auto; // ⬅ backup, chắc chắn dính phải
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border: none;
+        background: none;
+        color: #9ca3af;
+        cursor: pointer;
+        border-radius: 6px;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        &:hover {
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+    }
+
+    &__label {
+        display: block;   // ⬅ nếu là <label> mặc định inline, cần block để canh trái đúng
+        text-align: left;
+        font-size: 13px;
+        font-weight: 600;
+        color: #374151;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        background-color: #f9fafb;
+        font-size: 14px;
+        color: #111827;
+        box-sizing: border-box;
+
+        &::placeholder {
+            color: #9ca3af;
+            letter-spacing: 0.03em;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: #a78bfa;
+            background-color: #fff;
+        }
+    }
+
+    // ----- 2 nút Hủy / Tham gia -----
+
+    &__cancle,
+    &__submit {
+        flex: 1;
+        padding: 11px 0;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    &__cancle {
+        border: 1px solid #e5e7eb;
+        background-color: #fff;
+        color: #374151;
+
+        &:hover {
+            background-color: #f9fafb;
+        }
+    }
+
+    &__submit {
+        border: none;
+        background-color: #7c3aed;
+        color: #fff;
+
+        &:hover {
+            background-color: #6d28d9;
+        }
+    }
+
+    &__join-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 4px;
+    }
+}

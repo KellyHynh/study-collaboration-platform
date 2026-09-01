@@ -1,0 +1,314 @@
+.lesson-form {
+    max-width: 720px;
+    margin: 0 auto;
+
+    // ----- Header -----
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    &__back {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        border: none;
+        background: none;
+        padding: 0;
+        font-size: 14px;
+        font-weight: 500;
+        color: #6b7280;
+        cursor: pointer;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        &:hover {
+            color: #374151;
+        }
+    }
+
+    &__divider {
+        color: #d1d5db;
+        font-size: 14px;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 400;
+        color: #111827;
+    }
+
+    // ----- Form -----
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    // ----- Chapter card -----
+
+    &__chapter-card {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 16px 20px;
+        background-color: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+    }
+
+    &__chapter-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: #9ca3af;
+        text-align: left;
+    }
+
+    &__chapter-value {
+        font-size: 15px;
+        font-weight: 500;
+        color: #111827;
+        text-align: left;
+    }
+
+    // ----- Field -----
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #111827;
+            text-align: left;
+        }
+    }
+
+    &__required {
+        color: #ef4444;
+        margin-left: 2px;
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        align-items: start;
+    }
+
+    input[type="text"],
+    select {
+        width: 100%;
+        padding: 11px 14px;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        background-color: #fff;
+        font-size: 14px;
+        color: #111827;
+        box-sizing: border-box;
+
+        &::placeholder {
+            color: #9ca3af;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+        }
+
+        &[readonly] {
+            background-color: #f9fafb;
+            color: #6b7280;
+        }
+    }
+
+    // ----- Type options -----
+
+    &__type-options {
+        display: flex;
+        gap: 8px;
+    }
+
+    &__type-option {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 11px 0;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        background-color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        color: #6b7280;
+        cursor: pointer;
+        transition: all 0.15s ease;
+
+        svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        &:hover {
+            background-color: #f9fafb;
+        }
+
+        &--active {
+            background-color: #7c3aed;
+            border-color: #7c3aed;
+            color: #fff;
+
+            &:hover {
+                background-color: #6d28d9;
+            }
+        }
+    }
+
+    // ----- Dynamic content -----
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    // ----- Lock card + toggle -----
+
+    &__lock-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 20px;
+        background-color: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        text-align: left;
+    }
+
+    &__lock-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        strong {
+            font-size: 14px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        span {
+            font-size: 13px;
+            color: #9ca3af;
+        }
+    }
+
+    &__toggle {
+        position: relative;
+        flex-shrink: 0;
+        width: 40px;
+        height: 22px;
+        display: inline-block;
+
+        input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+
+            &:checked + .lesson-form__toggle-slider {
+                background-color: #7c3aed;
+            }
+
+            &:checked + .lesson-form__toggle-slider::before {
+                transform: translateX(18px);
+            }
+        }
+    }
+
+    &__toggle-slider {
+        position: absolute;
+        inset: 0;
+        background-color: #d1d5db;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background-color: #fff;
+            border-radius: 50%;
+            transition: transform 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    // ----- Actions -----
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        padding-top: 4px;
+    }
+
+    &__cancel,
+    &__submit {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+
+    &__cancel {
+        border: 1px solid #e5e7eb;
+        background-color: #fff;
+        color: #374151;
+
+        &:hover:not(:disabled) {
+            background-color: #f9fafb;
+        }
+    }
+
+    &__submit {
+        border: none;
+        background-color: #7c3aed;
+        color: #fff;
+
+        &:hover:not(:disabled) {
+            background-color: #6d28d9;
+        }
+    }
+}

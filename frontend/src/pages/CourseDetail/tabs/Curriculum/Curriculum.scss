@@ -1,0 +1,24 @@
+.curriculum {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 700;
+        color: #111827;
+    }
+
+    &__chapters {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+}
