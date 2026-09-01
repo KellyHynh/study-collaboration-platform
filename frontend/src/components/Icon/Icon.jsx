@@ -1,46 +1,112 @@
-import ChevronRight from "@/assets/chevron-right.svg?react";
-import Course from "@/assets/course.svg?react";
-import ListTodo from "@/assets/list-todo.svg?react";
-import Message from "@/assets/message.svg?react";
-import Calendar from "@/assets/calendar.svg?react";
-import Time from "@/assets/time.svg?react";
-import Bell from "@/assets/bell.svg?react";
-import Close from "@/assets/close.svg?react";
-import Star from "@/assets/star.svg?react";
-import ChevronLeft from "@/assets/chevron-left.svg?react";
-import HelpCircle from "@/assets/help-circle.svg?react";
-import Globe from "@/assets/globe.svg?react";
+
+import {
+    ChevronRight,
+    ChevronLeft,
+    CircleHelp,
+    Globe,
+    Search,
+    BookOpen,
+    ListTodo,
+    MessageCircle,
+    Calendar,
+    Clock,
+    Bell,
+    X,
+    Star,
+    Zap,
+    Users,
+    Play,
+    Check,
+    Lock,
+    Key,
+    Plus,
+    Edit,
+    // Rich Text Editor
+    Bold,
+    Italic,
+    Underline,
+    Heading,
+    List,
+    ListOrdered,
+    AlignLeft,
+    AlignCenter,
+    AlignRight,
+    Link,
+    Undo2,
+    Redo2,
+    Image,
+    Tag,
+    ChevronUp,
+    ChevronDown,
+    CircleCheck,
+    ListCheck,
+    Trash2
+} from "lucide-react";
 
 const icons = {
     "chevron-right": ChevronRight,
     "chevron-left": ChevronLeft,
-    "help-circle": HelpCircle,
-    "globe": Globe,
-
-    "course": Course,
+    "chevron-up": ChevronUp,
+    "chevron-down": ChevronDown,
+    "help-circle": CircleHelp,
+    globe: Globe,
+    search: Search,
+    course: BookOpen,
     "list-todo": ListTodo,
-    "message": Message,
-    "calendar": Calendar,
-    "time": Time,
-    "bell": Bell,
-    "close": Close,
-    "star": Star
+    message: MessageCircle,
+    calendar: Calendar,
+    time: Clock,
+    bell: Bell,
+    close: X,
+    star: Star,
+    zap: Zap,
+    users: Users,
+    "triangle-right": Play,
+    done: CircleCheck,
+    done2: Check,
+    lock: Lock,
+    key: Key,
+    plus: Plus,
+
+    // Rich Text Editor
+    bold: Bold,
+    italic: Italic,
+    underline: Underline,
+    heading: Heading,
+    list: List,
+    "list-ordered": ListOrdered,
+    "align-left": AlignLeft,
+    "align-center": AlignCenter,
+    "align-right": AlignRight,
+    link: Link,
+    undo: Undo2,
+    redo: Redo2,
+    image: Image,
+    tag: Tag,
+    "list-check": ListCheck,
+    "trash-2": Trash2
 };
 
-function Icon({ name, size = 20, className, fill }) {
+function Icon({ name, size = 20, className, fill, strokeWidth }) {
     const SvgIcon = icons[name];
+
     if (!SvgIcon) return null;
 
-    const extraProps = fill ? { fill } : {};
+    const extraProps = {
+        width: size,
+        height: size,
+        className,
+    };
 
-    return (
-        <SvgIcon
-            width={size}
-            height={size}
-            className={className}
-            {...extraProps}
-        />
-    );
+    if (fill !== undefined) {
+        extraProps.fill = fill;
+    }
+
+    if (strokeWidth !== undefined) {
+        extraProps.strokeWidth = strokeWidth;
+    }
+
+    return <SvgIcon {...extraProps} />;
 }
 
 export default Icon;

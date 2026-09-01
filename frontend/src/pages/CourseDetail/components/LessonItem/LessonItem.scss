@@ -1,0 +1,111 @@
+.lesson-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    border-bottom: 1px solid #f1f1f4;
+    background-color: #fafafa;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    // ----- Locked: làm mờ toàn bộ nội dung, trừ icon lock -----
+    &.lesson-item--locked {
+        .lesson-item__title,
+        .lesson-item__badge,
+        .lesson-item__duration {
+            opacity: 0.35;
+        }
+    }
+
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+    }
+
+    &__status {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+
+        svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        // Done - vòng xanh lá nhạt, icon xanh lá đậm
+        &--done {
+            background-color: #dcfce7;
+            color: #16a34a;
+        }
+
+        // Đang học - video: nền trắng, viền + icon cam
+        &--video {
+            background-color: #fff;
+            border: 1.5px solid #e5e7eb;
+            color: #2f7ed8;
+        }
+
+        // Đang học - quiz: nền trắng, viền + icon tím
+        &--quiz {
+            background-color: #fff;
+            border: 1.5px solid #e5e7eb;
+            color: #7c3aed;
+        }
+
+        // Locked - nền trắng (icon KHÔNG bị mờ), icon xám
+        &--locked {
+            background-color: #fff;
+            border: 1.5px solid #e5e7eb;
+            color: #9ca3af;
+            opacity: 0.45;
+        }
+    }
+
+    &__title {
+        font-size: 14px;
+        color: #374151;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__right {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    &__badge {
+        padding: 3px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+
+        &--video {
+            background-color: #ede9fe;
+            color: #7c3aed;
+        }
+
+        &--quiz {
+            background-color: #fef9c3;
+            color: #ca8a04;
+        }
+    }
+
+    &__duration {
+        font-size: 13px;
+        color: #9ca3af;
+        min-width: 44px;
+        text-align: right;
+    }
+}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import courses from "@/mocks/courses";
+import courses from "@/mocks/data/courses";
 import CourseCard from "@/components/CourseCard/CourseCard";
 import bem from "@/utils/bem";
 import "./MyCourses.scss";
@@ -69,7 +69,7 @@ function MyCourses() {
                         image={course.image}
                         category={course.category}
                         name={course.name}
-                        instructor={course.instructor}
+                        instructor={course.instructor.name}
                         lessons={course.lessons}
                         rating={course.rating}
                         progress={course.progress}

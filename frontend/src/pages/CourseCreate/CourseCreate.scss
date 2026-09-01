@@ -1,0 +1,556 @@
+.course-create {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 48px;
+    box-sizing: border-box;
+
+    // ----- Header -----
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+
+    &__back {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        border: none;
+        background: none;
+        padding: 0;
+
+        font-size: 14px;
+        font-weight: 500;
+        color: #6b7280;
+
+        cursor: pointer;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        &:hover {
+            color: #374151;
+        }
+    }
+
+    &__divider {
+        color: #d1d5db;
+        font-size: 14px;
+    }
+
+    &__title {
+        margin: 0;
+
+        font-size: 18px;
+        font-weight: 700;
+        color: #111827;
+    }
+
+
+    // ----- Form & Section -----
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    &__section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    &__section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    &__section-title {
+        margin: 0;
+
+        font-size: 14px;
+        font-weight: 700;
+        color: #111827;
+    }
+
+    &__section-description {
+        margin: 4px 0 0;
+
+        font-size: 13px;
+        line-height: 1.5;
+        color: #6b7280;
+    }
+
+
+    // ----- Cover upload -----
+
+    &__cover-upload {
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        gap: 8px;
+        min-height: 220px;
+        padding: 40px;
+
+        overflow: hidden;
+
+        border: 1.5px dashed #d1d5db;
+        border-radius: 12px;
+
+        background-color: #fafafa;
+
+        cursor: pointer;
+
+        transition:
+            border-color 0.2s ease,
+            background-color 0.2s ease;
+
+        svg {
+            width: 28px;
+            height: 28px;
+            color: #9ca3af;
+        }
+
+        span {
+            font-size: 13px;
+            font-weight: 500;
+            color: #7c3aed;
+        }
+
+        small {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        input[type="file"] {
+            position: absolute;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            opacity: 0;
+
+            cursor: pointer;
+        }
+
+        &:hover {
+            border-color: #a78bfa;
+            background-color: #f5f3ff;
+        }
+    }
+
+    &__cover-preview {
+        position: absolute;
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+
+
+    // ----- Field / Row -----
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+        }
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    &__required {
+        margin-left: 2px;
+        color: #ef4444;
+    }
+
+
+    // ----- Inputs -----
+
+    input[type="text"],
+    select,
+    textarea {
+        width: 100%;
+        box-sizing: border-box;
+
+        padding: 10px 14px;
+
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+
+        background-color: #fff;
+
+        font-family: inherit;
+        font-size: 14px;
+        color: #111827;
+
+        &::placeholder {
+            color: #9ca3af;
+        }
+
+        &:focus {
+            outline: none;
+
+            border-color: #a78bfa;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(167, 139, 250, 0.15);
+        }
+    }
+
+    select {
+        appearance: none;
+
+        background-image:
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+
+        padding-right: 36px;
+
+        cursor: pointer;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 110px;
+        line-height: 1.5;
+    }
+
+
+    // ----- Input icon -----
+
+    &__input-icon {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        svg {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            color: #9ca3af;
+            pointer-events: none; // để click xuyên qua icon, focus thẳng vào input
+        }
+
+        input {
+            width: 100%;
+            padding-left: 40px !important; // ⬅ chỗ này quyết định khoảng cách, quan trọng nhất
+        }
+    }
+
+
+    // ----- Tags -----
+
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    &__tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+
+        padding: 5px 8px;
+
+        border-radius: 6px;
+
+        background-color: #f3f4f6;
+
+        font-size: 12px;
+        color: #374151;
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 16px;
+            height: 16px;
+
+            padding: 0;
+
+            border: none;
+            background: none;
+
+            color: #9ca3af;
+
+            cursor: pointer;
+
+            &:hover {
+                color: #ef4444;
+            }
+
+            svg {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+
+
+    // ----- Rich Text Editor -----
+
+    &__editor {
+        width: 100%;
+    }
+
+
+    // ----- Add link -----
+
+    &__add-link {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        border: none;
+        background: none;
+        padding: 0;
+
+        font-size: 13px;
+        font-weight: 600;
+        color: #7c3aed;
+
+        cursor: pointer;
+
+        svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        &:hover {
+            color: #6d28d9;
+        }
+    }
+
+
+    // ----- List -----
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    &__list-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        input {
+            flex: 1;
+        }
+    }
+
+
+    // ----- Learning outcome icon -----
+
+    &__icon-done {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+
+        width: 20px;
+        height: 20px;
+
+        color: #22c55e;
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+
+    // ----- Requirement dot -----
+
+    &__icon-dot {
+        flex-shrink: 0;
+
+        width: 6px;
+        height: 6px;
+
+        margin: 0 7px;
+
+        border-radius: 50%;
+
+        background-color: #9ca3af;
+    }
+
+
+    // ----- Remove item -----
+
+    &__remove-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+
+        width: 32px;
+        height: 32px;
+
+        padding: 0;
+
+        border: none;
+        border-radius: 6px;
+
+        background: transparent;
+
+        color: #9ca3af;
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: #fef2f2;
+            color: #ef4444;
+        }
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+
+    // ----- Access options -----
+
+    &__access-options {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    &__access-option {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+
+        padding: 14px;
+
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+
+        cursor: pointer;
+
+        transition:
+            border-color 0.2s ease,
+            background-color 0.2s ease;
+
+        input[type="radio"] {
+            margin-top: 3px;
+            accent-color: #7c3aed;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        strong {
+            font-size: 14px;
+            color: #111827;
+        }
+
+        span {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        &:has(input:checked) {
+            border-color: #a78bfa;
+            background-color: #f5f3ff;
+        }
+    }
+
+
+    // ----- Actions -----
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+
+        padding-top: 8px;
+    }
+
+    &__cancel,
+    &__submit {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        padding: 12px 24px;
+
+        border-radius: 10px;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition:
+            background-color 0.2s ease,
+            border-color 0.2s ease;
+        
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &__cancel {
+        border: 1px solid #e5e7eb;
+        background-color: #fff;
+        color: #374151;
+
+        &:hover {
+            background-color: #f9fafb;
+        }
+    }
+
+    &__submit {
+        border: none;
+        background-color: #4c1d95;
+        color: #fff;
+
+        &:hover {
+            background-color: #3b1470;
+        }
+    }
+}

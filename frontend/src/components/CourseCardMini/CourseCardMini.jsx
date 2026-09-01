@@ -47,7 +47,7 @@ function CourseCardMini({ course }) {
                 </h3>
 
                 <p className={b("instructor")}>
-                    {instructor}
+                    {instructor.name}
                 </p>
 
                 <div className={b("meta")}>

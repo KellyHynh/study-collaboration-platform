@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import courses from "@/mocks/courses";
+import courses from "@/mocks/data/courses";
 import CourseCardMini from "@/components/CourseCardMini/CourseCardMini";
 import bem from "@/utils/bem";
 import "./RecommendedCourses.scss";

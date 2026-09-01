@@ -1,0 +1,73 @@
+.rich-text-renderer {
+    width: 100%;
+    text-align: left;
+
+    .tiptap {
+        margin: 0;
+        outline: none;
+
+        // Paragraph
+        p {
+            margin: 0 0 12px;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #4b5563;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        // Headings
+        h1,
+        h2,
+        h3 {
+            margin: 0 0 12px;
+            color: #111827;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        // Lists
+        ul,
+        ol {
+            margin: 0 0 12px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+
+        // Bold
+        strong {
+            font-weight: 700;
+            color: #111827;
+        }
+
+        // Italic
+        em {
+            font-style: italic;
+        }
+
+        // Links
+        a {
+            color: inherit;
+            text-decoration: underline;
+        }
+    }
+}

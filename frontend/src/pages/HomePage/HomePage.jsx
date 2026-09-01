@@ -10,7 +10,6 @@ const b = bem("home-page");
 function HomePage() {
     return (
         <div className={b()}>
-            <Header />
 
             <main className={b("layout")}>
                 <aside className={b("sidebar")}>
@@ -26,7 +25,6 @@ function HomePage() {
                 </aside>
             </main>
 
-            <Footer />
         </div>
     );
 }
