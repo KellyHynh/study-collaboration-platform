@@ -4,7 +4,8 @@ import VideoLessonContent from "./VideoLessonContent";
 // Reading lesson content
 import ReadingLessonContent from "./ReadingLessonContent";
 import Icon from "@/components/Icon/Icon";
-
+// Quiz builder
+import QuizBuilder from "./QuizBuilder/QuizBuilder";
 import bem from "@/utils/bem";
 import "./LessonForm.scss";
 
@@ -30,16 +31,12 @@ function LessonForm({
         lesson?.type || "video"
     );
 
-    const [duration, setDuration] = useState(
-        lesson?.duration || ""
+    const [durationSeconds, setDurationSeconds] = useState(
+        lesson?.durationSeconds || 0
     );
 
     const [lockEnabled, setLockEnabled] = useState(
         lesson?.lock?.enabled || false
-    );
-
-    const [lockType, setLockType] = useState(
-        lesson?.lock?.type || "none"
     );
 
     // Lesson content
@@ -61,15 +58,12 @@ function LessonForm({
         const formData = {
             title: trimmedTitle,
             type,
-            duration: duration.trim(),
+            durationSeconds: Number(durationSeconds) || 0,
             // Lesson-specific content
             content,
 
             lock: {
                 enabled: lockEnabled,
-                type: lockEnabled
-                    ? lockType
-                    : "none",
             },
         };
 
@@ -212,9 +206,9 @@ function LessonForm({
                         <input
                             id="lesson-duration"
                             type="text"
-                            value={duration}
+                            value={durationSeconds}
                             onChange={(event) =>
-                                setDuration(
+                                setDurationSeconds(
                                     event.target.value
                                 )
                             }
@@ -249,11 +243,6 @@ function LessonForm({
 
                                 setLockEnabled(enabled);
 
-                                setLockType(
-                                    enabled
-                                        ? "enrollment"
-                                        : "none"
-                                );
                             }}
                         />
                         <span className={b("toggle-slider")} />
@@ -280,10 +269,10 @@ function LessonForm({
                     )}
 
                     {type === "quiz" && (
-                        <div>
-                            {/* Quiz builder will be added later */}
-                            Nội dung Quiz
-                        </div>
+                        <QuizBuilder
+                            value={content}
+                            onChange={setContent}
+                        />
                     )}
 
                 </div>

@@ -139,3 +139,84 @@ export async function getLessonById(id) {
 
     return response.json();
 }
+
+// Create a lesson inside a chapter
+export async function createLesson(
+    courseId,
+    chapterId,
+    lessonData
+) {
+    const response = await fetch(
+        `/api/courses/${courseId}/chapters/${chapterId}/lessons`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(lessonData),
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(
+            data.message || "Failed to create lesson"
+        );
+    }
+
+    return data;
+}
+
+// Update an existing lesson
+export async function updateLesson(
+    courseId,
+    chapterId,
+    lessonId,
+    lessonData
+) {
+    const response = await fetch(
+        `/api/courses/${courseId}/chapters/${chapterId}/lessons/${lessonId}`,
+        {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(lessonData),
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(
+            data.message || "Failed to update lesson"
+        );
+    }
+
+    return data;
+}
+
+// Delete an existing lesson
+export async function deleteLesson(
+    courseId,
+    chapterId,
+    lessonId
+) {
+    const response = await fetch(
+        `/api/courses/${courseId}/chapters/${chapterId}/lessons/${lessonId}`,
+        {
+            method: "DELETE",
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(
+            data.message || "Failed to delete lesson"
+        );
+    }
+
+    return data;
+}

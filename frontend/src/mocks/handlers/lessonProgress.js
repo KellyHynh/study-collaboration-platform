@@ -10,13 +10,14 @@ export const lessonProgressHandlers = [
         ({ params }) => {
             const courseId = Number(params.id);
 
-            const progress = lessonProgress.find(
+            const progress = lessonProgress.filter(
                 (item) =>
-                    item.courseId === courseId &&
-                    item.userId === "current-user"
+                    item.userId === "current-user" &&
+                    item.lessonId >= courseId * 1000 &&
+                    item.lessonId < (courseId + 1) * 1000
             );
 
-            if (!progress) {
+            if (progress.length === 0) {
                 return HttpResponse.json(
                     {
                         message: "Lesson progress not found",

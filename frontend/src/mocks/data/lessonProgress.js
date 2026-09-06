@@ -1,140 +1,29 @@
 const lessonProgress = [
-    {
-        courseId: 1,
-        userId: "current-user",
-
-        lessons: {
-            1001: "done",
-            1002: "done",
-            1003: "current",
-            1008: "locked",
-
-            1004: "done",
-            1005: "done",
-            1006: "locked",
-            1007: "locked",
-            1009: "locked",
-
-            1010: "locked",
-            1011: "locked",
-            1012: "locked",
-            1013: "locked",
-        }
-    },
-
-    {
-        courseId: 2,
-        userId: "current-user",
-
-        lessons: {
-            2001: "done",
-            2002: "current",
-            2005: "locked",
-
-            2003: "locked",
-            2004: "locked",
-            2006: "locked",
-        }
-    },
-
-    {
-        courseId: 3,
-        userId: "current-user",
-
-        lessons: {
-            3001: "done",
-            3002: "done",
-            3005: "current",
-
-            3003: "locked",
-            3004: "locked",
-            3006: "locked",
-        }
-    },
-
-    {
-        courseId: 4,
-        userId: "current-user",
-
-        lessons: {
-            4001: "done",
-            4002: "done",
-            4003: "current",
-
-            4004: "locked",
-            4005: "locked",
-            4006: "locked",
-        }
-    },
-
-    {
-        courseId: 5,
-        userId: "current-user",
-
-        lessons: {
-            5001: "done",
-            5002: "done",
-            5003: "done",
-
-            5004: "current",
-            5005: "locked",
-            5006: "locked",
-            5007: "locked",
-        }
-    },
-
-    {
-        courseId: 6,
-        userId: "current-user",
-
-        lessons: {
-            6001: "done",
-            6002: "current",
-            6003: "locked",
-
-            6004: "locked",
-            6005: "locked",
-            6006: "locked",
-        }
-    },
-
-    {
-        courseId: 7,
-        userId: "current-user",
-
-        lessons: {
-            7001: "done",
-            7002: "done",
-            7003: "current",
-
-            7004: "locked",
-            7005: "locked",
-            7006: "locked",
-        }
-    },
-
-    {
-        courseId: 8,
-        userId: "current-user",
-
-        lessons: {
-            8001: "done",
-            8002: "done",
-            8003: "current",
-            8004: "locked",
-            8005: "locked",
-
-            8006: "locked",
-            8007: "locked",
-            8008: "locked",
-            8009: "locked",
-
-            8010: "locked",
-            8011: "locked",
-            8012: "locked",
-            8013: "locked",
-        }
-    }
+    { userId: "current-user", lessonId: 1001, completedAt: "2026-07-16", createdAt: "2026-07-15", updatedAt: "2026-07-16" },
+    { userId: "current-user", lessonId: 1002, completedAt: "2026-07-17", createdAt: "2026-07-16", updatedAt: "2026-07-17" },
+    { userId: "current-user", lessonId: 1003, completedAt: null, createdAt: "2026-07-18", updatedAt: "2026-07-18" },
+    { userId: "current-user", lessonId: 1004, completedAt: "2026-07-19", createdAt: "2026-07-19", updatedAt: "2026-07-19" },
+    { userId: "current-user", lessonId: 1005, completedAt: "2026-07-20", createdAt: "2026-07-20", updatedAt: "2026-07-20" },
+    { userId: "current-user", lessonId: 2001, completedAt: "2026-06-26", createdAt: "2026-06-25", updatedAt: "2026-06-26" },
+    { userId: "current-user", lessonId: 2002, completedAt: null, createdAt: "2026-06-27", updatedAt: "2026-06-27" },
+    { userId: "current-user", lessonId: 3001, completedAt: "2026-08-06", createdAt: "2026-08-05", updatedAt: "2026-08-06" },
+    { userId: "current-user", lessonId: 3002, completedAt: "2026-08-07", createdAt: "2026-08-07", updatedAt: "2026-08-07" },
+    { userId: "current-user", lessonId: 3005, completedAt: null, createdAt: "2026-08-08", updatedAt: "2026-08-08" },
+    { userId: "current-user", lessonId: 4001, completedAt: "2026-07-01", createdAt: "2026-06-30", updatedAt: "2026-07-01" },
+    { userId: "current-user", lessonId: 4002, completedAt: "2026-07-02", createdAt: "2026-07-02", updatedAt: "2026-07-02" },
+    { userId: "current-user", lessonId: 4003, completedAt: null, createdAt: "2026-07-03", updatedAt: "2026-07-03" },
+    { userId: "current-user", lessonId: 5001, completedAt: "2026-08-01", createdAt: "2026-07-31", updatedAt: "2026-08-01" },
+    { userId: "current-user", lessonId: 5002, completedAt: "2026-08-02", createdAt: "2026-08-02", updatedAt: "2026-08-02" },
+    { userId: "current-user", lessonId: 5003, completedAt: "2026-08-03", createdAt: "2026-08-03", updatedAt: "2026-08-03" },
+    { userId: "current-user", lessonId: 5004, completedAt: null, createdAt: "2026-08-04", updatedAt: "2026-08-04" },
+    { userId: "current-user", lessonId: 6001, completedAt: "2026-08-21", createdAt: "2026-08-20", updatedAt: "2026-08-21" },
+    { userId: "current-user", lessonId: 6002, completedAt: null, createdAt: "2026-08-22", updatedAt: "2026-08-22" },
+    { userId: "current-user", lessonId: 7001, completedAt: "2026-07-11", createdAt: "2026-07-10", updatedAt: "2026-07-11" },
+    { userId: "current-user", lessonId: 7002, completedAt: "2026-07-12", createdAt: "2026-07-12", updatedAt: "2026-07-12" },
+    { userId: "current-user", lessonId: 7003, completedAt: null, createdAt: "2026-07-13", updatedAt: "2026-07-13" },
+    { userId: "current-user", lessonId: 8001, completedAt: "2026-08-11", createdAt: "2026-08-10", updatedAt: "2026-08-11" },
+    { userId: "current-user", lessonId: 8002, completedAt: "2026-08-12", createdAt: "2026-08-12", updatedAt: "2026-08-12" },
+    { userId: "current-user", lessonId: 8003, completedAt: null, createdAt: "2026-08-13", updatedAt: "2026-08-13" },
 ];
 
 export default lessonProgress;

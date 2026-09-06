@@ -1,0 +1,83 @@
+.quiz-builder {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    &__label {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 2px;
+    }
+
+    &__hint {
+        margin: 0;
+        font-size: 13px;
+        color: #9ca3af;
+    }
+
+    // ----- Add buttons -----
+
+    &__add-actions {
+        display: flex;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+
+    &__add-button {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+        background-color: #fff;
+
+        svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        &--mc {
+            border: 1.5px solid #e9d5ff;
+            color: #9333ea;
+
+            &:hover {
+                background-color: #faf5ff;
+            }
+        }
+
+        &--essay {
+            border: 1.5px solid #bfdbfe;
+            color: #2563eb;
+
+            &:hover {
+                background-color: #eff6ff;
+            }
+        }
+    }
+
+    // ----- Questions list -----
+
+    &__questions {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    &__question {
+        display: contents; // không tạo thêm khung bọc, để MultipleChoiceQuestion/EssayQuestion tự quyết định style khung riêng
+    }
+}

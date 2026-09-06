@@ -11,12 +11,11 @@ const lessons = [
 
         title: "Welcome to the Course",
         type: "video",
-        duration: "08:20",
+        durationSeconds: 500,
         isPreview: true,
 
         lock: {
             enabled: false,
-            type: "none",
         },
 
         content: {
@@ -32,12 +31,11 @@ const lessons = [
 
         title: "How the Web Works",
         type: "video",
-        duration: "14:35",
+        durationSeconds: 875,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "enrollment",
         },
 
         content: {
@@ -53,12 +51,11 @@ const lessons = [
 
         title: "Setting Up Your Environment",
         type: "reading",
-        duration: "12:10",
+        durationSeconds: 730,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "sequential",
         },
 
         content: {
@@ -114,89 +111,94 @@ const lessons = [
 
         title: "Introduction Quiz",
         type: "quiz",
-        duration: "10:00",
+        durationSeconds: 600,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "sequential",
         },
 
         content: {
             questions: [
                 {
                     id: 1,
-                    order: 1,
+                    position: 1,
                     type: "multiple-choice",
 
                     question:
                         "Which technology is primarily used to structure the content of a web page?",
 
-                    image: null,
+                    imageUrl: null,
 
                     options: [
                         {
-                            id: "a",
+                            optionKey: "A",
+                            isCorrect: false,
                             text: "HTML",
                         },
                         {
-                            id: "b",
+                            optionKey: "B",
+                            isCorrect: false,
                             text: "CSS",
                         },
                         {
-                            id: "c",
+                            optionKey: "C",
+                            isCorrect: false,
                             text: "JavaScript",
                         },
                         {
-                            id: "d",
+                            optionKey: "D",
+                            isCorrect: false,
                             text: "SQL",
                         },
                     ],
 
-                    correctAnswer: "a",
                 },
 
                 {
                     id: 2,
-                    order: 2,
+                    position: 2,
                     type: "multiple-choice",
 
                     question:
                         "Which language is commonly used to style web pages?",
 
-                    image: null,
+                    imageUrl: null,
 
                     options: [
                         {
-                            id: "a",
+                            optionKey: "A",
+                            isCorrect: false,
                             text: "HTML",
                         },
                         {
-                            id: "b",
+                            optionKey: "B",
+                            isCorrect: false,
                             text: "CSS",
                         },
                         {
-                            id: "c",
+                            optionKey: "C",
+                            isCorrect: false,
                             text: "JavaScript",
                         },
                         {
-                            id: "d",
+                            optionKey: "D",
+                            isCorrect: false,
                             text: "Python",
                         },
                     ],
 
-                    correctAnswer: "b",
                 },
 
                 {
                     id: 3,
-                    order: 3,
+                    position: 3,
                     type: "essay",
 
                     question:
                         "Explain briefly what happens when a user enters a website address in a browser.",
 
-                    image: null,
+                    imageUrl: null,
                 },
             ],
         },
@@ -214,12 +216,11 @@ const lessons = [
 
         title: "Variables and Data Types",
         type: "video",
-        duration: "15:20",
+        durationSeconds: 920,
         isPreview: true,
 
         lock: {
             enabled: false,
-            type: "none",
         },
 
         content: {
@@ -235,12 +236,11 @@ const lessons = [
 
         title: "Functions",
         type: "reading",
-        duration: "13:45",
+        durationSeconds: 825,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "enrollment",
         },
 
         content: {
@@ -285,57 +285,59 @@ const lessons = [
 
         title: "JavaScript Basics Quiz",
         type: "quiz",
-        duration: "10:00",
+        durationSeconds: 600,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "sequential",
         },
 
         content: {
             questions: [
                 {
                     id: 1,
-                    order: 1,
+                    position: 1,
                     type: "multiple-choice",
 
                     question:
                         "Which keyword can be used to declare a variable in JavaScript?",
 
-                    image: null,
+                    imageUrl: null,
 
                     options: [
                         {
-                            id: "a",
+                            optionKey: "A",
+                            isCorrect: false,
                             text: "let",
                         },
                         {
-                            id: "b",
+                            optionKey: "B",
+                            isCorrect: false,
                             text: "style",
                         },
                         {
-                            id: "c",
+                            optionKey: "C",
+                            isCorrect: false,
                             text: "define",
                         },
                         {
-                            id: "d",
+                            optionKey: "D",
+                            isCorrect: false,
                             text: "variable",
                         },
                     ],
 
-                    correctAnswer: "a",
                 },
 
                 {
                     id: 2,
-                    order: 2,
+                    position: 2,
                     type: "essay",
 
                     question:
                         "What is the purpose of a function in JavaScript?",
 
-                    image: null,
+                    imageUrl: null,
                 },
             ],
         },
@@ -353,12 +355,11 @@ const lessons = [
 
         title: "What Is React?",
         type: "video",
-        duration: "12:40",
+        durationSeconds: 760,
         isPreview: true,
 
         lock: {
             enabled: false,
-            type: "none",
         },
 
         content: {
@@ -374,12 +375,11 @@ const lessons = [
 
         title: "Components and Props",
         type: "video",
-        duration: "21:15",
+        durationSeconds: 1275,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "sequential",
         },
 
         content: {
@@ -395,12 +395,11 @@ const lessons = [
 
         title: "React Components Reading",
         type: "reading",
-        duration: "14:20",
+        durationSeconds: 860,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "enrollment",
         },
 
         content: {
@@ -445,57 +444,59 @@ const lessons = [
 
         title: "React Fundamentals Quiz",
         type: "quiz",
-        duration: "15:00",
+        durationSeconds: 900,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "sequential",
         },
 
         content: {
             questions: [
                 {
                     id: 1,
-                    order: 1,
+                    position: 1,
                     type: "multiple-choice",
 
                     question:
                         "What is a React component?",
 
-                    image: null,
+                    imageUrl: null,
 
                     options: [
                         {
-                            id: "a",
+                            optionKey: "A",
+                            isCorrect: false,
                             text: "A reusable UI building block",
                         },
                         {
-                            id: "b",
+                            optionKey: "B",
+                            isCorrect: false,
                             text: "A database",
                         },
                         {
-                            id: "c",
+                            optionKey: "C",
+                            isCorrect: false,
                             text: "A CSS file",
                         },
                         {
-                            id: "d",
+                            optionKey: "D",
+                            isCorrect: false,
                             text: "A server",
                         },
                     ],
 
-                    correctAnswer: "a",
                 },
 
                 {
                     id: 2,
-                    order: 2,
+                    position: 2,
                     type: "essay",
 
                     question:
                         "Explain why reusable components are useful.",
 
-                    image: null,
+                    imageUrl: null,
                 },
             ],
         },
@@ -513,12 +514,11 @@ const lessons = [
 
         title: "What Is a Design System?",
         type: "video",
-        duration: "16:20",
+        durationSeconds: 980,
         isPreview: true,
 
         lock: {
             enabled: false,
-            type: "none",
         },
 
         content: {
@@ -534,12 +534,11 @@ const lessons = [
 
         title: "Design Tokens",
         type: "reading",
-        duration: "15:00",
+        durationSeconds: 900,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "enrollment",
         },
 
         content: {
@@ -595,12 +594,11 @@ const lessons = [
 
         title: "Component Foundations",
         type: "video",
-        duration: "21:30",
+        durationSeconds: 1290,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "sequential",
         },
 
         content: {
@@ -616,89 +614,94 @@ const lessons = [
 
         title: "Foundations Quiz",
         type: "quiz",
-        duration: "12:00",
+        durationSeconds: 720,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "sequential",
         },
 
         content: {
             questions: [
                 {
                     id: 1,
-                    order: 1,
+                    position: 1,
                     type: "multiple-choice",
 
                     question:
                         "What is one purpose of a design system?",
 
-                    image: null,
+                    imageUrl: null,
 
                     options: [
                         {
-                            id: "a",
+                            optionKey: "A",
+                            isCorrect: false,
                             text: "Maintain consistency",
                         },
                         {
-                            id: "b",
+                            optionKey: "B",
+                            isCorrect: false,
                             text: "Replace all developers",
                         },
                         {
-                            id: "c",
+                            optionKey: "C",
+                            isCorrect: false,
                             text: "Store customer passwords",
                         },
                         {
-                            id: "d",
+                            optionKey: "D",
+                            isCorrect: false,
                             text: "Manage databases",
                         },
                     ],
 
-                    correctAnswer: "a",
                 },
 
                 {
                     id: 2,
-                    order: 2,
+                    position: 2,
                     type: "multiple-choice",
 
                     question:
                         "Which is commonly represented as a design token?",
 
-                    image: null,
+                    imageUrl: null,
 
                     options: [
                         {
-                            id: "a",
+                            optionKey: "A",
+                            isCorrect: false,
                             text: "Color",
                         },
                         {
-                            id: "b",
+                            optionKey: "B",
+                            isCorrect: false,
                             text: "User password",
                         },
                         {
-                            id: "c",
+                            optionKey: "C",
+                            isCorrect: false,
                             text: "Database row",
                         },
                         {
-                            id: "d",
+                            optionKey: "D",
+                            isCorrect: false,
                             text: "Server log",
                         },
                     ],
 
-                    correctAnswer: "a",
                 },
 
                 {
                     id: 3,
-                    order: 3,
+                    position: 3,
                     type: "essay",
 
                     question:
                         "Explain how design tokens can help maintain consistency.",
 
-                    image: null,
+                    imageUrl: null,
                 },
             ],
         },
@@ -711,12 +714,11 @@ const lessons = [
 
         title: "Design System Reference",
         type: "reading",
-        duration: "18:00",
+        durationSeconds: 1080,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "enrollment",
         },
 
         content: {
@@ -761,12 +763,11 @@ const lessons = [
 
         title: "Building Reusable Components",
         type: "video",
-        duration: "24:20",
+        durationSeconds: 1460,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "sequential",
         },
 
         content: {
@@ -782,12 +783,11 @@ const lessons = [
 
         title: "Component Documentation",
         type: "reading",
-        duration: "17:30",
+        durationSeconds: 1050,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "enrollment",
         },
 
         content: {
@@ -832,57 +832,59 @@ const lessons = [
 
         title: "Component Review Quiz",
         type: "quiz",
-        duration: "15:00",
+        durationSeconds: 900,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "sequential",
         },
 
         content: {
             questions: [
                 {
                     id: 1,
-                    order: 1,
+                    position: 1,
                     type: "multiple-choice",
 
                     question:
                         "What makes a component reusable?",
 
-                    image: null,
+                    imageUrl: null,
 
                     options: [
                         {
-                            id: "a",
+                            optionKey: "A",
+                            isCorrect: false,
                             text: "It can be used in multiple contexts",
                         },
                         {
-                            id: "b",
+                            optionKey: "B",
+                            isCorrect: false,
                             text: "It only works once",
                         },
                         {
-                            id: "c",
+                            optionKey: "C",
+                            isCorrect: false,
                             text: "It cannot accept changes",
                         },
                         {
-                            id: "d",
+                            optionKey: "D",
+                            isCorrect: false,
                             text: "It must contain a database",
                         },
                     ],
 
-                    correctAnswer: "a",
                 },
 
                 {
                     id: 2,
-                    order: 2,
+                    position: 2,
                     type: "essay",
 
                     question:
                         "Describe one benefit of documenting reusable components.",
 
-                    image: null,
+                    imageUrl: null,
                 },
             ],
         },
@@ -895,12 +897,11 @@ const lessons = [
 
         title: "Design Review Audio",
         type: "reading",
-        duration: "10:20",
+        durationSeconds: 620,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "enrollment",
         },
 
         content: {
@@ -932,12 +933,11 @@ const lessons = [
 
         title: "Accessibility Principles",
         type: "video",
-        duration: "19:40",
+        durationSeconds: 1180,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "sequential",
         },
 
         content: {
@@ -953,12 +953,11 @@ const lessons = [
 
         title: "Accessible Components",
         type: "reading",
-        duration: "16:10",
+        durationSeconds: 970,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "enrollment",
         },
 
         content: {
@@ -1003,12 +1002,11 @@ const lessons = [
 
         title: "Accessibility Checklist",
         type: "reading",
-        duration: "12:30",
+        durationSeconds: 750,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "enrollment",
         },
 
         content: {
@@ -1053,57 +1051,55 @@ const lessons = [
 
         title: "Accessibility Quiz",
         type: "quiz",
-        duration: "14:00",
+        durationSeconds: 840,
         isPreview: false,
 
         lock: {
             enabled: true,
-            type: "sequential",
         },
 
         content: {
             questions: [
                 {
                     id: 1,
-                    order: 1,
+                    position: 1,
                     type: "multiple-choice",
 
                     question:
                         "Which practice improves accessibility?",
 
-                    image: null,
+                    imageUrl: null,
 
                     options: [
                         {
-                            id: "a",
+                            optionKey: "A",
                             text: "Providing meaningful labels",
                         },
                         {
-                            id: "b",
+                            optionKey: "B",
                             text: "Removing keyboard support",
                         },
                         {
-                            id: "c",
+                            optionKey: "C",
                             text: "Using unreadable text",
                         },
                         {
-                            id: "d",
+                            optionKey: "D",
                             text: "Hiding important information",
                         },
                     ],
 
-                    correctAnswer: "a",
                 },
 
                 {
                     id: 2,
-                    order: 2,
+                    position: 2,
                     type: "essay",
 
                     question:
                         "Why is keyboard accessibility important?",
 
-                    image: null,
+                    imageUrl: null,
                 },
             ],
         },

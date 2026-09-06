@@ -4,6 +4,7 @@ import {
     createChapter,
     getCourseCurriculum,
     getCourseLessonProgress,
+    deleteLesson,
 } from "@/services/courseService";
 import AddChapterModal from "@/pages/CourseDetail/components/AddChapterModal/AddChapterModal";
 import ChapterItem from "@/pages/CourseDetail/components/ChapterItem/ChapterItem";
@@ -46,7 +47,17 @@ function Curriculum({ course }) {
                 setCurriculum(curriculumData);
 
                 setLessonProgress(
-                    progressData?.lessons || {}
+                    Array.isArray(progressData)
+                        ? progressData.reduce(
+                            (progress, item) => ({
+                                ...progress,
+                                [item.lessonId]: item.completedAt
+                                    ? "done"
+                                    : "current",
+                            }),
+                            {}
+                        )
+                        : progressData?.lessons || {}
                 );
 
                 const firstChapter =
@@ -100,6 +111,53 @@ function Curriculum({ course }) {
             }
         }
 
+        // Handle lesson deletion
+            async function handleDeleteLesson(
+                chapterId,
+                lessonId
+            ) {
+                try {
+                    setError(null);
+
+                    // Delete lesson through the service layer
+                    await deleteLesson(
+                        course.id,
+                        chapterId,
+                        lessonId
+                    );
+
+                    // Remove the deleted lesson from local curriculum state
+                    setCurriculum((current) => ({
+                        ...current,
+                        chapters: current.chapters.map(
+                            (chapter) => {
+                                if (
+                                    String(chapter.id) !==
+                                    String(chapterId)
+                                ) {
+                                    return chapter;
+                                }
+
+                                return {
+                                    ...chapter,
+                                    lessons:
+                                        chapter.lessons.filter(
+                                            (lesson) =>
+                                                String(
+                                                    lesson.id
+                                                ) !==
+                                                String(lessonId)
+                                        ),
+                                };
+                            }
+                        ),
+                    }));
+                } catch (error) {
+                    // Show deletion error
+                    setError(error.message);
+                }
+            }
+            
     function handleToggleChapter(chapterId) {
         setExpandedChapters((current) => ({
             ...current,
@@ -173,6 +231,7 @@ function Curriculum({ course }) {
                         lessonProgress={lessonProgress}
                         courseId={course.id}
                         isOwner={course.isOwner}
+                        onDeleteLesson={handleDeleteLesson}
                     />
                 ))}
 

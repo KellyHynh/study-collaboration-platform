@@ -7,7 +7,8 @@ import Footer from "@/components/Footer/Footer";
 import CourseCreate from "@/pages/CourseCreate/CourseCreate";
 // Lesson creation page
 import LessonCreate from "@/pages/LessonCreate/LessonCreate";
-
+// Lesson editing page
+import LessonEdit from "@/pages/LessonEdit/LessonEdit";
 function App() {
     return (
       <>
@@ -27,10 +28,15 @@ function App() {
               path="/courses/:id/edit"
               element={<CourseCreate mode="edit" />}
             />
-            // Create lesson
+            {/* Create lesson */}
             <Route
                 path="/courses/:id/chapters/:chapterId/lessons/create"
                 element={<LessonCreate />}
+            />
+            {/* Edit lesson */}
+            <Route
+                path="/courses/:id/chapters/:chapterId/lessons/:lessonId/edit"
+                element={<LessonEdit />}
             />
         </Routes>
 

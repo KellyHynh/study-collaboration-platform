@@ -6,9 +6,9 @@ const b = bem("course-card");
 
 function CourseCard({
     id,
-    image,
+    thumbnailUrl,
     category,
-    name,
+    title,
     instructor,
     lessons,
     rating,
@@ -17,7 +17,6 @@ function CourseCard({
     const navigate = useNavigate();
 
     let status;
-    
 
     if (progress === 0) {
         status = "New";
@@ -34,11 +33,8 @@ function CourseCard({
     return (
         <article className={b()} onClick={handleClick}>
             <div className={b("image")}>
-                <img src={image} alt={name} />
+                <img src={thumbnailUrl} alt={title} />
 
-                <span className={b("status")}>
-                    {status}
-                </span>
                 <span
                     className={b("status", {
                         completed: progress === 100
@@ -55,7 +51,7 @@ function CourseCard({
                 </p>
 
                 <h3 className={b("name")}>
-                    {name}
+                    {title}
                 </h3>
 
                 <p className={b("instructor")}>

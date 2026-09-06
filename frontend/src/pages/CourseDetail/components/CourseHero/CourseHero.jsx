@@ -12,11 +12,11 @@ function CourseHero({ course, enrollment }) {
     return (
         <section className={b()}>
 
-            {course.image ? (
+            {course.thumbnailUrl ? (
                 <img
                     className={b("image")}
-                    src={course.image}
-                    alt={course.name}
+                    src={course.thumbnailUrl}
+                    alt={course.title}
                 />
             ) : (
                 <div className={b("image-placeholder")}>
@@ -29,7 +29,7 @@ function CourseHero({ course, enrollment }) {
                 <div className={b("tags")}>
 
                     <span className={b("tag")}>
-                        {course.category}
+                        {course.category || course.categoryId}
                     </span>
 
                     {course.tags?.map((tag) => (
@@ -60,7 +60,7 @@ function CourseHero({ course, enrollment }) {
                 </div>
 
                 <h1 className={b("title")}>
-                    {course.name}
+                    {course.title}
                 </h1>
 
                 <div className={b("meta")}>

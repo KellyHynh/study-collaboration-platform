@@ -1,5 +1,9 @@
-export function parseDuration(duration) {
-    if (!duration || typeof duration !== "string") {
+export function parseDuration(durationSeconds) {
+    if (typeof durationSeconds === "number") {
+        return durationSeconds;
+    }
+
+    if (!durationSeconds || typeof durationSeconds !== "string") {
         return 0;
     }
 
@@ -43,7 +47,7 @@ export function getChapterDuration(chapter) {
 
     const totalSeconds = chapter.lessons.reduce(
         (total, lesson) =>
-            total + parseDuration(lesson.duration),
+            total + parseDuration(lesson.durationSeconds),
         0
     );
 

@@ -12,8 +12,8 @@ function CourseCardMini({ course }) {
 
     const {
         id,
-        image,
-        name,
+        thumbnailUrl,
+        title,
         instructor,
         rating,
         students
@@ -37,13 +37,13 @@ function CourseCardMini({ course }) {
         >
             <img
                 className={b("image")}
-                src={image}
-                alt={name}
+                src={thumbnailUrl}
+                alt={title}
             />
 
             <div className={b("content")}>
                 <h3 className={b("name")}>
-                    {name}
+                    {title}
                 </h3>
 
                 <p className={b("instructor")}>

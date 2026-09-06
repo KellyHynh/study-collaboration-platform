@@ -8,10 +8,20 @@ import "./LessonItem.scss";
 
 const b = bem("lesson-item");
 
+function formatDuration(durationSeconds) {
+    const minutes = Math.floor(durationSeconds / 60);
+    const seconds = durationSeconds % 60;
+
+    return `${minutes}:${String(seconds).padStart(2, "0")}`;
+}
+
 function LessonItem({
     lesson,
     lessonProgress,
     courseId,
+    chapterId,
+    isOwner,
+    onDelete,
 }) {
     const navigate = useNavigate();
 
@@ -22,7 +32,35 @@ function LessonItem({
     );
 
     const isQuiz = lesson.type === "quiz";
+    const isReading = lesson.type === "reading";
+
     const isLocked = status === "locked";
+
+    // Open lesson editor
+    function handleEdit(event) {
+        event.stopPropagation();
+
+        navigate(
+            `/courses/${courseId}/chapters/${chapterId}/lessons/${lesson.id}/edit`
+        );
+    }
+
+    // Delete lesson
+    function handleDelete(event) {
+        event.stopPropagation();
+
+        // Ask for confirmation before deleting
+        const confirmed = window.confirm(
+            "Bạn có chắc muốn xóa bài giảng này?"
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+        // Pass the deletion request to the parent
+        onDelete?.();
+    }
 
     // Open lesson detail when the lesson is available
     function handleClick() {
@@ -100,15 +138,52 @@ function LessonItem({
                     className={`${b("badge")} ${
                         isQuiz
                             ? b("badge--quiz")
-                            : b("badge--video")
+                            : isReading
+                                ? b("badge--reading")
+                                : b("badge--video")
                     }`}
                 >
-                    {isQuiz ? "QUIZ" : "VIDEO"}
+                    {isQuiz ? "QUIZ" : isReading ? "READING" : "VIDEO"}
                 </span>
 
                 <span className={b("duration")}>
-                    {lesson.duration}
+                    {formatDuration(lesson.durationSeconds)}
                 </span>
+
+                {/* Owner actions */}
+                {isOwner && (
+                    <div
+                        className={b("actions")}
+                    >
+                        {/* Edit lesson */}
+                        <button
+                            type="button"
+                            className={`${b(
+                                "action"
+                            )} ${b(
+                                "action--edit"
+                            )}`}
+                            onClick={handleEdit}
+                            aria-label="Chỉnh sửa bài"
+                        >
+                            <Icon name="edit" />
+                        </button>
+
+                        {/* Delete lesson */}
+                        <button
+                            type="button"
+                            className={`${b(
+                                "action"
+                            )} ${b(
+                                "action--delete"
+                            )}`}
+                            onClick={handleDelete}
+                            aria-label="Xóa bài"
+                        >
+                            <Icon name="trash-2" />
+                        </button>
+                    </div>
+                )}
 
             </div>
 

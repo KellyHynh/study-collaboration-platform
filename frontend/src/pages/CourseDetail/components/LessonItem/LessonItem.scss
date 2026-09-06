@@ -100,6 +100,10 @@
             background-color: #fef9c3;
             color: #ca8a04;
         }
+        &--reading {
+            background-color: #c3e8fe;
+            color: #0477ca;
+        }
     }
 
     &__duration {
@@ -107,5 +111,71 @@
         color: #9ca3af;
         min-width: 44px;
         text-align: right;
+    }
+
+    // Owner actions
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transition:
+            opacity 0.15s ease,
+            visibility 0.15s ease;
+    }
+
+    // Show actions when hovering the lesson
+    &:hover &__actions {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    // Action button
+    &__action {
+        width: 28px;
+        height: 28px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 0;
+
+        border: none;
+        border-radius: 6px;
+
+        background: transparent;
+        color: #9ca3af;
+
+        cursor: pointer;
+
+        transition:
+            background-color 0.15s ease,
+            color 0.15s ease;
+
+        svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        &:hover {
+            background-color: #f3f4f6;
+            color: #111827;
+        }
+
+        &--edit:hover {
+            background-color: #deeffb;
+            color: #56a0c6;
+        }
+        // Delete action
+        &--delete:hover {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
     }
 }

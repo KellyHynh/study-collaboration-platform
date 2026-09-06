@@ -20,6 +20,7 @@ function ChapterItem({
     lessonProgress,
     courseId,
     isOwner,
+    onDeleteLesson,
 }) {
     const navigate = useNavigate();
 
@@ -136,7 +137,14 @@ function ChapterItem({
                             lesson={lesson}
                             lessonProgress={lessonProgress}
                             courseId={courseId}
+                            chapterId={chapter.id}
                             isOwner={isOwner}
+                            onDelete={() =>
+                                onDeleteLesson?.(
+                                    chapter.id,
+                                    lesson.id
+                                )
+                            }
                         />
                     ))}
 

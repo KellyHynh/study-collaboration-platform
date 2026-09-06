@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 
-import courses from "@/mocks/data/courses";
 import CourseCardMini from "@/components/CourseCardMini/CourseCardMini";
 import bem from "@/utils/bem";
 import "./RecommendedCourses.scss";
@@ -13,7 +12,7 @@ function RecommendedCourses({ courses }) {
     const recommendedCourses = courses
         .filter(
             (course) =>
-                course.isPublic &&
+                course.visibility === "public" &&
                 !course.isEnrolled
         )
         .slice(0, 5);

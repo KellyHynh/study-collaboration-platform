@@ -1,9 +1,10 @@
 const courses = [
     {
         id: 1,
-        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=675&fit=crop&auto=format",
+        thumbnailUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=675&fit=crop&auto=format",
 
-        name: "Web Development",
+        title: "Web Development",
+        categoryId: 1,
         category: "Programming",
         level: "Beginner",
         tags: ["Web Development", "JavaScript", "Frontend"],
@@ -62,11 +63,11 @@ const courses = [
             "A computer for practicing the exercises 💻"
         ],
 
-        isPublic: true,
+        visibility: "public",
         joinCode: "KNO-7X29Q",
 
         instructor: {
-            id: 101,
+            ownerId: 101,
             name: "John Smith",
             avatar: "https://i.pravatar.cc/150?img=12",
             students: 5420,
@@ -101,15 +102,17 @@ const courses = [
             }
         ],
 
-        createdAt: "2026-07-10"
+        createdAt: "2026-07-10",
+        updatedAt: "2026-07-28"
     },
 
 
     {
         id: 2,
-        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=675&fit=crop&auto=format",
+        thumbnailUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=675&fit=crop&auto=format",
 
-        name: "Database Fundamentals",
+        title: "Database Fundamentals",
+        categoryId: 2,
         category: "Data",
         level: "Beginner",
         tags: ["SQL", "Database"],
@@ -160,11 +163,11 @@ const courses = [
 
         requirements: [],
 
-        isPublic: true,
+        visibility: "public",
         joinCode: "KNO-3P8LM",
 
         instructor: {
-            id: 102,
+            ownerId: 102,
             name: "Sarah Lee",
             avatar: "https://i.pravatar.cc/150?img=47",
             students: 3180,
@@ -192,15 +195,17 @@ const courses = [
             }
         ],
 
-        createdAt: "2026-06-22"
+        createdAt: "2026-06-22",
+        updatedAt: "2026-07-28"
     },
 
 
     {
         id: 3,
-        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=675&fit=crop&auto=format",
+        thumbnailUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=675&fit=crop&auto=format",
 
-        name: "Java Programming",
+        title: "Java Programming",
+        categoryId: 1,
         category: "Programming",
         level: "Intermediate",
         tags: ["Java", "OOP"],
@@ -261,11 +266,11 @@ const courses = [
             "Familiarity with fundamental programming concepts"
         ],
 
-        isPublic: false,
+        visibility: "private",
         joinCode: "KNO-9F2XR",
 
         instructor: {
-            id: 103,
+            ownerId: 103,
             name: "David Kim",
             avatar: "https://i.pravatar.cc/150?img=68",
             students: 6240,
@@ -285,15 +290,17 @@ const courses = [
 
         materials: [],
 
-        createdAt: "2026-08-01"
+        createdAt: "2026-08-01",
+        updatedAt: "2026-07-28"
     },
 
 
     {
         id: 4,
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop&auto=format",
+        thumbnailUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop&auto=format",
 
-        name: "UI/UX Design",
+        title: "UI/UX Design",
+        categoryId: 3,
         category: "Design",
         level: "Beginner",
         tags: ["UI", "UX", "Figma"],
@@ -339,11 +346,11 @@ const courses = [
 
         requirements: [],
 
-        isPublic: true,
+        visibility: "public",
         joinCode: "KNO-5D7QA",
 
         instructor: {
-            id: 104,
+            ownerId: 104,
             name: "Emily Chen",
             avatar: "https://i.pravatar.cc/150?img=32",
             students: 4720,
@@ -371,15 +378,17 @@ const courses = [
             }
         ],
 
-        createdAt: "2026-07-28"
+        createdAt: "2026-07-28",
+        updatedAt: "2026-07-28"
     },
 
 
     {
         id: 5,
-        image: "/images/react.jpg",
+        thumbnailUrl: "/images/react.jpg",
 
-        name: "React.js Essentials",
+        title: "React.js Essentials",
+        categoryId: 1,
         category: "Programming",
         level: "Intermediate",
         tags: ["React", "JavaScript", "Frontend"],
@@ -441,11 +450,11 @@ const courses = [
             "Familiarity with ES6+ syntax ⚡"
         ],
 
-        isPublic: true,
+        visibility: "public",
         joinCode: "KNO-8R4TZ",
 
         instructor: {
-            id: 105,
+            ownerId: 105,
             name: "Michael Brown",
             avatar: "https://i.pravatar.cc/150?img=13",
             students: 8920,
@@ -480,15 +489,17 @@ const courses = [
             }
         ],
 
-        createdAt: "2026-08-12"
+        createdAt: "2026-08-12",
+        updatedAt: "2026-07-28"
     },
 
 
     {
         id: 6,
-        image: "/images/python.jpg",
+        thumbnailUrl: "/images/python.jpg",
 
-        name: "Python for Beginners",
+        title: "Python for Beginners",
+        categoryId: 1,
         category: "Programming",
         level: "Beginner",
         tags: ["Python"],
@@ -527,11 +538,11 @@ const courses = [
             "No previous programming experience is required."
         ],
 
-        isPublic: true,
+        visibility: "public",
         joinCode: "KNO-2M6VK",
 
         instructor: {
-            id: 106,
+            ownerId: 106,
             name: "Sophia Wilson",
             avatar: "https://i.pravatar.cc/150?img=44",
             students: 7310,
@@ -551,15 +562,17 @@ const courses = [
 
         materials: [],
 
-        createdAt: "2026-08-18"
+        createdAt: "2026-08-18",
+        updatedAt: "2026-07-28"
     },
 
 
     {
         id: 7,
-        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=675&fit=crop&auto=format",
+        thumbnailUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=675&fit=crop&auto=format",
 
-        name: "Software Engineering Principles",
+        title: "Software Engineering Principles",
+        categoryId: 4,
         category: "Engineering",
         level: "Advanced",
         tags: [],
@@ -603,11 +616,11 @@ const courses = [
             "Basic programming experience"
         ],
 
-        isPublic: true,
+        visibility: "public",
         joinCode: "KNO-6X3PW",
 
         instructor: {
-            id: 107,
+            ownerId: 107,
             name: "Alex Johnson",
             avatar: "https://i.pravatar.cc/150?img=56",
             students: 3810,
@@ -635,15 +648,17 @@ const courses = [
             }
         ],
 
-        createdAt: "2026-08-20"
+        createdAt: "2026-08-20",
+        updatedAt: "2026-07-28"
     },
 
 
     {
         id: 8,
-        image: "https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&h=675&fit=crop&auto=format",
+        thumbnailUrl: "https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&h=675&fit=crop&auto=format",
 
-        name: "Advanced Design Systems",
+        title: "Advanced Design Systems",
+        categoryId: 3,
         category: "Design",
         level: "Advanced",
         tags: ["UI", "Design Systems", "Figma"],
@@ -705,11 +720,11 @@ const courses = [
             "Understanding of design principles and components"
         ],
 
-        isPublic: false,
+        visibility: "private",
         joinCode: "KNO-4H9ZS",
 
         instructor: {
-            id: 108,
+            ownerId: 108,
             name: "Olivia Martin",
             avatar: "https://i.pravatar.cc/150?img=49",
             students: 2140,
@@ -729,7 +744,8 @@ const courses = [
 
         materials: [],
 
-        createdAt: "2026-08-25"
+        createdAt: "2026-08-25",
+        updatedAt: "2026-07-28"
     }
 ];
 

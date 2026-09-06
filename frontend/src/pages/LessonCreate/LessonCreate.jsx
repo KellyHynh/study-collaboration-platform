@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import {
     getCourseById,
     getCourseCurriculum,
+    createLesson,
 } from "@/services/courseService";
 
 import LessonForm from "@/pages/CourseDetail/components/LessonForm/LessonForm";
@@ -68,12 +69,27 @@ function LessonCreate() {
 
     // Return to course detail
     function handleCancel() {
-        navigate(`/courses/${id}`);
+        navigate(`/courses/${id}?tab=curriculum`);
     }
 
     // Handle lesson creation
-    function handleSubmit(formData) {
-        console.log("Lesson data:", formData);
+    async function handleSubmit(formData) {
+        try {
+            setError(null);
+
+            // Create lesson through the service layer
+            await createLesson(
+                id,
+                chapterId,
+                formData
+            );
+
+            // Return to course detail after creation
+            navigate(`/courses/${id}?tab=curriculum`);
+        } catch (error) {
+            // Show creation error
+            setError(error.message);
+        }
     }
 
     if (loading) {

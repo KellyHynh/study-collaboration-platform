@@ -11,11 +11,11 @@ function EnrollmentCard({ course, enrollment }) {
     return (
         <section className={b()}>
 
-            {course.image ? (
+            {course.thumbnailUrl ? (
                 <img
                     className={b("image")}
-                    src={course.image}
-                    alt={course.name}
+                    src={course.thumbnailUrl}
+                    alt={course.title}
                 />
             ) : (
                 <div className={b("image-placeholder")}>

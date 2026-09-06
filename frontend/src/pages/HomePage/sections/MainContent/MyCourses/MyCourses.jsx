@@ -66,9 +66,9 @@ function MyCourses() {
                     <CourseCard
                         key={course.id}
                         id={course.id}
-                        image={course.image}
+                        thumbnailUrl={course.thumbnailUrl}
                         category={course.category}
-                        name={course.name}
+                        title={course.title}
                         instructor={course.instructor.name}
                         lessons={course.lessons}
                         rating={course.rating}

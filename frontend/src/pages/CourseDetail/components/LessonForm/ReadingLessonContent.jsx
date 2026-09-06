@@ -5,6 +5,8 @@ import FileUpload from "@/components/FileUpload/FileUpload";
 import Icon from "@/components/Icon/Icon";
 import "./ReadingLessonCOntent.scss"
 import bem from "@/utils/bem";
+// Reusable file preview
+import FilePreview from "@/components/FilePreview/FilePreview";
 
 const b = bem("reading-content");
 
@@ -53,6 +55,7 @@ function ReadingLessonContent({
                     "application/pdf"
                         ? URL.createObjectURL(file)
                         : null,
+                isPreviewOpen: false,
             }));
 
         const updatedAttachments = [
@@ -120,6 +123,31 @@ function ReadingLessonContent({
         });
     }
 
+    // Toggle PDF preview
+    function handleTogglePreview(attachmentId) {
+        const updatedAttachments = attachments.map(
+            (attachment) => {
+                if (attachment.id !== attachmentId) {
+                    return attachment;
+                }
+
+                return {
+                    ...attachment,
+                    isPreviewOpen:
+                        !attachment.isPreviewOpen,
+                };
+            }
+        );
+
+        setAttachments(updatedAttachments);
+
+        // Update lesson content
+        onChange?.({
+            body,
+            attachments: updatedAttachments,
+        });
+    }
+
     return (
         <div className={b()}>
 
@@ -181,62 +209,66 @@ function ReadingLessonContent({
                         )}
                     >
 
-                        {attachments.map(
-                            (attachment) => (
-                                <div
-                                    key={
-                                        attachment.id
-                                    }
-                                    className={b(
-                                        "attachment"
-                                    )}
-                                >
-
-                                    <div
-                                        className={b(
-                                            "attachment-info"
-                                        )}
-                                    >
-
-                                        <span
-                                            className={b(
-                                                "attachment-icon"
-                                            )}
-                                        >
+                        {attachments.map((attachment) => (
+                            <div
+                                key={attachment.id}
+                                className={b("attachment")}
+                            >
+                                {/* Attachment row */}
+                                <div className={b("attachment-row")}>
+                                    <div className={b("attachment-info")}>
+                                        <span className={b("attachment-icon")}>
                                             <Icon name="course" />
                                         </span>
 
-                                        <span
-                                            className={b(
-                                                "attachment-name"
-                                            )}
-                                        >
-                                            {
-                                                attachment.fileName
-                                            }
+                                        <span className={b("attachment-name")}>
+                                            {attachment.fileName}
                                         </span>
-
                                     </div>
 
-                                    {/* Remove attachment */}
-                                    <button
-                                        type="button"
-                                        className={b(
-                                            "attachment-remove"
+                                    <div className={b("attachment-actions")}>
+                                        {/* PDF preview button */}
+                                        {attachment.type === "pdf" && (
+                                            <button
+                                                type="button"
+                                                className={b("attachment-preview")}
+                                                onClick={() =>
+                                                    handleTogglePreview(
+                                                        attachment.id
+                                                    )
+                                                }
+                                            >
+                                                {attachment.isPreviewOpen
+                                                    ? "Ẩn PDF"
+                                                    : "Xem PDF"}
+                                            </button>
                                         )}
-                                        onClick={() =>
-                                            handleRemoveAttachment(
-                                                attachment.id
-                                            )
-                                        }
-                                        aria-label="Xóa tài liệu"
-                                    >
-                                        <Icon name="close" />
-                                    </button>
 
+                                        {/* Remove attachment */}
+                                        <button
+                                            type="button"
+                                            className={b("attachment-remove")}
+                                            onClick={() =>
+                                                handleRemoveAttachment(
+                                                    attachment.id
+                                                )
+                                            }
+                                            aria-label="Xóa tài liệu"
+                                        >
+                                            <Icon name="close" />
+                                        </button>
+                                    </div>
                                 </div>
-                            )
-                        )}
+
+                                {/* Reusable PDF preview */}
+                                {attachment.isPreviewOpen && (
+                                    <FilePreview
+                                        file={attachment}
+                                        type={attachment.type}
+                                    />
+                                )}
+                            </div>
+                        ))}
 
                     </div>
                 )}

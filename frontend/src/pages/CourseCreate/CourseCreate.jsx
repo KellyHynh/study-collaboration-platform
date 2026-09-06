@@ -61,16 +61,16 @@ function CourseCreate({ mode = "create" }) {
 
     const isEdit = mode === "edit";
     const [course, setCourse] = useState({
-        image: "",
-        name: "",
-        category: "",
+        thumbnailUrl: "",
+        title: "",
+        categoryId: "",
         customCategory: "",
         level: "",
         tags: [],
         description: null,
         learningOutcomes: [""],
         requirements: [""],
-        isPublic: true,
+        visibility: "public",
     });
 
     const [tagInput, setTagInput] = useState("");
@@ -99,9 +99,9 @@ function CourseCreate({ mode = "create" }) {
                 const data = await getCourseById(id);
 
                 setCourse({
-                    image: data.image || "",
-                    name: data.name || "",
-                    category: data.category || "",
+                    thumbnailUrl: data.thumbnailUrl || "",
+                    title: data.title || "",
+                    categoryId: data.category || data.categoryId || "",
                     customCategory: "",
                     level: data.level || "",
                     tags: data.tags || [],
@@ -114,8 +114,8 @@ function CourseCreate({ mode = "create" }) {
                         data.requirements?.length
                             ? data.requirements
                             : [""],
-                    isPublic:
-                        data.isPublic ?? true,
+                    visibility:
+                        data.visibility ?? "public",
                 });
             } catch (error) {
                 console.error(
@@ -136,7 +136,7 @@ function CourseCreate({ mode = "create" }) {
 
         const imageUrl = URL.createObjectURL(file);
 
-        updateField("image", imageUrl);
+        updateField("thumbnailUrl", imageUrl);
     };
 
     // ----- Tags -----
@@ -217,17 +217,22 @@ function CourseCreate({ mode = "create" }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (!course.name.trim()) {
+        if (!course.title.trim()) {
             return;
         }
 
-        const payload = {
-            ...course,
+        const {
+            customCategory,
+            ...courseFields
+        } = course;
 
-            category:
-                course.category === "Other"
-                    ? course.customCategory.trim()
-                    : course.category,
+        const payload = {
+            ...courseFields,
+
+            categoryId:
+                course.categoryId === "Other"
+                    ? customCategory.trim()
+                    : course.categoryId,
 
             learningOutcomes:
                 course.learningOutcomes
@@ -311,10 +316,10 @@ function CourseCreate({ mode = "create" }) {
 
                     <label className={b("cover-upload")}>
 
-                        {course.image ? (
+                        {course.thumbnailUrl ? (
                             <img
                                 className={b("cover-preview")}
-                                src={course.image}
+                                src={course.thumbnailUrl}
                                 alt="Ảnh bìa khóa học"
                             />
                         ) : (
@@ -353,7 +358,7 @@ function CourseCreate({ mode = "create" }) {
                     </div>
 
 
-                    {/* Name */}
+                    {/* Title */}
 
                     <div className={b("field")}>
 
@@ -367,10 +372,10 @@ function CourseCreate({ mode = "create" }) {
                         <input
                             id="course-name"
                             type="text"
-                            value={course.name}
+                            value={course.title}
                             onChange={(event) =>
                                 updateField(
-                                    "name",
+                                    "title",
                                     event.target.value
                                 )
                             }
@@ -392,10 +397,10 @@ function CourseCreate({ mode = "create" }) {
 
                             <select
                                 id="course-category"
-                                value={course.category}
+                                value={course.categoryId}
                                 onChange={(event) =>
                                     updateField(
-                                        "category",
+                                        "categoryId",
                                         event.target.value
                                     )
                                 }
@@ -414,7 +419,7 @@ function CourseCreate({ mode = "create" }) {
                                 ))}
                             </select>
 
-                            {course.category === "Other" && (
+                            {course.categoryId === "Other" && (
                                 <input
                                     type="text"
                                     value={course.customCategory}
@@ -759,11 +764,11 @@ function CourseCreate({ mode = "create" }) {
                             <input
                                 type="radio"
                                 name="visibility"
-                                checked={course.isPublic}
+                                checked={course.visibility === "public"}
                                 onChange={() =>
                                     updateField(
-                                        "isPublic",
-                                        true
+                                        "visibility",
+                                        "public"
                                     )
                                 }
                             />
@@ -787,11 +792,11 @@ function CourseCreate({ mode = "create" }) {
                             <input
                                 type="radio"
                                 name="visibility"
-                                checked={!course.isPublic}
+                                checked={course.visibility === "private"}
                                 onChange={() =>
                                     updateField(
-                                        "isPublic",
-                                        false
+                                        "visibility",
+                                        "private"
                                     )
                                 }
                             />

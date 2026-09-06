@@ -54,15 +54,15 @@ export const courseHandlers = [
     http.post("/api/courses", async ({ request }) => {
         const body = await request.json();
 
-        // Name là field bắt buộc
+        // Title is required
         if (
-            !body.name ||
-            typeof body.name !== "string" ||
-            !body.name.trim()
+            !body.title ||
+            typeof body.title !== "string" ||
+            !body.title.trim()
         ) {
             return HttpResponse.json(
                 {
-                    message: "Course name is required",
+                    message: "Course title is required",
                 },
                 {
                     status: 400,
@@ -70,14 +70,16 @@ export const courseHandlers = [
             );
         }
 
+        const now = new Date().toISOString();
+
         const newCourse = {
             id: generateCourseId(),
 
-            image: body.image || "",
+            title: body.title.trim(),
 
-            category: body.category || "",
+            thumbnailUrl: body.thumbnailUrl || "",
 
-            name: body.name.trim(),
+            categoryId: body.categoryId || "",
 
             instructor: body.instructor || {
                 id: "current-user",
@@ -117,16 +119,20 @@ export const courseHandlers = [
 
             progress: 0,
 
-            isPublic:
-                typeof body.isPublic === "boolean"
-                    ? body.isPublic
-                    : true,
+            visibility:
+                body.visibility === "private"
+                    ? "private"
+                    : "public",
 
             joinCode: generateJoinCode(),
 
-            createdAt: new Date()
-                .toISOString()
-                .split("T")[0],
+            ownerId: body.ownerId || "current-user",
+
+            language: body.language || "English",
+
+            createdAt: now,
+
+            updatedAt: now,
         };
 
         // Mock database
@@ -140,6 +146,8 @@ export const courseHandlers = [
         );
     }),
 
+
+    // PATCH /api/courses/:id
     http.patch("/api/courses/:id", async ({ params, request }) => {
         const courseId = Number(params.id);
 
@@ -160,14 +168,15 @@ export const courseHandlers = [
 
         const body = await request.json();
 
+        // Title is required
         if (
-            !body.name ||
-            typeof body.name !== "string" ||
-            !body.name.trim()
+            !body.title ||
+            typeof body.title !== "string" ||
+            !body.title.trim()
         ) {
             return HttpResponse.json(
                 {
-                    message: "Course name is required",
+                    message: "Course title is required",
                 },
                 {
                     status: 400,
@@ -180,25 +189,23 @@ export const courseHandlers = [
         const updatedCourse = {
             ...currentCourse,
 
-            ...body,
+            // Editable fields
+            title: body.title.trim(),
 
-            id: currentCourse.id,
+            thumbnailUrl:
+                body.thumbnailUrl !== undefined
+                    ? body.thumbnailUrl
+                    : currentCourse.thumbnailUrl,
 
-            joinCode: currentCourse.joinCode,
+            categoryId:
+                body.categoryId !== undefined
+                    ? body.categoryId
+                    : currentCourse.categoryId,
 
-            createdAt: currentCourse.createdAt,
-
-            instructor: currentCourse.instructor,
-
-            name: body.name.trim(),
-
-            category:
-                body.category || currentCourse.category,
-
-            tags:
-                Array.isArray(body.tags)
-                    ? body.tags
-                    : currentCourse.tags,
+            description:
+                body.description !== undefined
+                    ? body.description
+                    : currentCourse.description,
 
             learningOutcomes:
                 Array.isArray(body.learningOutcomes)
@@ -209,6 +216,51 @@ export const courseHandlers = [
                 Array.isArray(body.requirements)
                     ? body.requirements
                     : currentCourse.requirements,
+
+            tags:
+                Array.isArray(body.tags)
+                    ? body.tags
+                    : currentCourse.tags,
+
+            level:
+                body.level !== undefined
+                    ? body.level
+                    : currentCourse.level,
+
+            visibility:
+                body.visibility === "private"
+                    ? "private"
+                    : body.visibility === "public"
+                        ? "public"
+                        : currentCourse.visibility,
+
+            language:
+                body.language !== undefined
+                    ? body.language
+                    : currentCourse.language,
+
+            // System fields
+            id: currentCourse.id,
+
+            ownerId: currentCourse.ownerId,
+
+            joinCode: currentCourse.joinCode,
+
+            createdAt: currentCourse.createdAt,
+
+            instructor: currentCourse.instructor,
+
+            lessons: currentCourse.lessons,
+
+            duration: currentCourse.duration,
+
+            rating: currentCourse.rating,
+
+            students: currentCourse.students,
+
+            progress: currentCourse.progress,
+
+            updatedAt: new Date().toISOString(),
         };
 
         courses[courseIndex] = updatedCourse;

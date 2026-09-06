@@ -20,7 +20,7 @@ import {
     Lock,
     Key,
     Plus,
-    Edit,
+    PencilSparkles,
     // Rich Text Editor
     Bold,
     Italic,
@@ -84,7 +84,8 @@ const icons = {
     image: Image,
     tag: Tag,
     "list-check": ListCheck,
-    "trash-2": Trash2
+    "trash-2": Trash2,
+    edit: PencilSparkles,
 };
 
 function Icon({ name, size = 20, className, fill, strokeWidth }) {

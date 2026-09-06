@@ -30,6 +30,25 @@
         border-top: 1px solid #e5e7eb;
     }
 
+    // Attachment row
+    &__attachment-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    // Attachment actions
+    &__attachment-actions {
+        flex-shrink: 0;
+
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    
+
     // Title left, upload button right
     &__attachments-header {
         display: flex;
@@ -72,6 +91,25 @@
         border-radius: 8px;
 
         background-color: #fff;
+    }
+
+    // PDF preview button
+    &__attachment-preview {
+        padding: 5px 9px;
+
+        border: none;
+        border-radius: 6px;
+
+        background-color: #f3f4f6;
+        color: #6b7280;
+
+        font-size: 12px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #ede9fe;
+            color: #7c3aed;
+        }
     }
 
     &__attachment-info {

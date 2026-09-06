@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 import {
     getCourseById,
@@ -27,11 +27,16 @@ function CourseDetail() {
 
     const [course, setCourse] = useState(null);
     const [enrollment, setEnrollment] = useState(null);
-    const [activeTab, setActiveTab] = useState("overview");
+    //const [activeTab, setActiveTab] = useState("overview");
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const [searchParams] = useSearchParams();
+
+    const [activeTab, setActiveTab] = useState(
+        searchParams.get("tab") || "overview"
+    );
     useEffect(() => {
         async function fetchCourseDetail() {
             try {
