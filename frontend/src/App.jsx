@@ -9,6 +9,8 @@ import CourseCreate from "@/pages/CourseCreate/CourseCreate";
 import LessonCreate from "@/pages/LessonCreate/LessonCreate";
 // Lesson editing page
 import LessonEdit from "@/pages/LessonEdit/LessonEdit";
+import LessonView from "@/pages/LessonView/LessonView";
+import ViewAllCourses from "@/pages/ViewAllCourses/ViewAllCourses";
 function App() {
     return (
       <>
@@ -16,9 +18,16 @@ function App() {
 
         <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/courses" element={<ViewAllCourses />} />
+            <Route path="/courses/my-courses" element={<ViewAllCourses mode="my" />} />
+            <Route path="/courses/recommended" element={<ViewAllCourses mode="recommended" />} />
             <Route
                 path="/courses/:id"
                 element={<CourseDetail />}
+            />
+            <Route
+              path="/courses/:courseId/lessons/:lessonId"
+              element={<LessonView />}
             />
             <Route
               path="/courses/create"

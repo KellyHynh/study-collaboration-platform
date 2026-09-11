@@ -13,7 +13,7 @@ function VideoLessonContent({
     const inputRef = useRef(null);
 
     const [videoPreview, setVideoPreview] =
-        useState(value?.previewUrl || null);
+        useState(value?.video?.videoUrl || value?.videoUrl || value?.previewUrl || null);
 
     // Open the browser file picker
     function handleChooseVideo() {
@@ -28,26 +28,29 @@ function VideoLessonContent({
             return;
         }
 
-        // Create a temporary local URL for preview
-        const previewUrl =
-            URL.createObjectURL(file);
+        const reader = new FileReader();
 
-        setVideoPreview(previewUrl);
+        reader.onload = () => {
+            const videoUrl = reader.result;
 
-        // Store video metadata for the lesson form
-        onChange?.({
-            file,
-            fileName: file.name,
-            mimeType: file.type,
-            previewUrl,
-        });
+            setVideoPreview(videoUrl);
+            onChange?.({
+                video: {
+                    videoUrl,
+                    fileName: file.name,
+                    mimeType: file.type,
+                },
+            });
+        };
+
+        reader.readAsDataURL(file);
     }
 
     // Remove selected video
     function handleRemoveVideo() {
         setVideoPreview(null);
 
-        onChange?.(null);
+        onChange?.({ video: null });
 
         if (inputRef.current) {
             inputRef.current.value = "";
@@ -99,7 +102,7 @@ function VideoLessonContent({
                     <div className={b("file")}>
 
                         <span>
-                            {value?.fileName}
+                            {value?.video?.fileName || value?.fileName}
                         </span>
 
                         <button

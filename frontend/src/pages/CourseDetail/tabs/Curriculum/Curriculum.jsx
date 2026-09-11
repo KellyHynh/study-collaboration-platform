@@ -5,6 +5,7 @@ import {
     getCourseCurriculum,
     getCourseLessonProgress,
     deleteLesson,
+    deleteChapter,
 } from "@/services/courseService";
 import AddChapterModal from "@/pages/CourseDetail/components/AddChapterModal/AddChapterModal";
 import ChapterItem from "@/pages/CourseDetail/components/ChapterItem/ChapterItem";
@@ -84,9 +85,18 @@ function Curriculum({ course }) {
             try {
                 setCreatingChapter(true);
 
+                const nextPosition =
+                    Math.max(
+                        0,
+                        ...(curriculum?.chapters || []).map(
+                            (chapter) => chapter.position || 0
+                        )
+                    ) + 1;
+
                 const newChapter = await createChapter(
                     course.id,
-                    title
+                    title,
+                    nextPosition
                 );
 
                 setCurriculum((current) => ({
@@ -157,6 +167,24 @@ function Curriculum({ course }) {
                     setError(error.message);
                 }
             }
+
+    async function handleDeleteChapter(chapterId) {
+        try {
+            setError(null);
+            await deleteChapter(chapterId);
+
+            setCurriculum((current) => ({
+                ...current,
+                chapters: current.chapters.filter(
+                    (chapter) =>
+                        String(chapter.id) !==
+                        String(chapterId)
+                ),
+            }));
+        } catch (error) {
+            setError(error.message);
+        }
+    }
             
     function handleToggleChapter(chapterId) {
         setExpandedChapters((current) => ({
@@ -188,6 +216,23 @@ function Curriculum({ course }) {
         return (
             <section className={b()}>
                 <p>Chưa có bài giảng.</p>
+                {course.isOwner && (
+                    <button
+                        type="button"
+                        className={b("add-chapter")}
+                        onClick={() => setShowAddChapter(true)}
+                    >
+                        <Icon name="plus" />
+                        Thêm chương
+                    </button>
+                )}
+                {showAddChapter && (
+                    <AddChapterModal
+                        onClose={() => setShowAddChapter(false)}
+                        onSubmit={handleCreateChapter}
+                        loading={creatingChapter}
+                    />
+                )}
             </section>
         );
     }
@@ -232,6 +277,7 @@ function Curriculum({ course }) {
                         courseId={course.id}
                         isOwner={course.isOwner}
                         onDeleteLesson={handleDeleteLesson}
+                        onDeleteChapter={handleDeleteChapter}
                     />
                 ))}
 

@@ -9,7 +9,7 @@ function FilePreview({
     type,
 }) {
     // Only PDF preview is supported for now
-    if (type !== "pdf" || !file?.previewUrl) {
+    if (type !== "pdf" || !(file?.previewUrl || file?.fileUrl)) {
         return null;
     }
 
@@ -17,7 +17,7 @@ function FilePreview({
         <div className={b()}>
             {/* PDF viewer */}
             <iframe
-                src={file.previewUrl}
+                src={file.previewUrl || file.fileUrl}
                 title={file.fileName || "PDF preview"}
             />
         </div>

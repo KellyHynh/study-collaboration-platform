@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import {
     getCourseById,
     getCourseCurriculum,
+    getQuizForLesson,
     updateLesson,
 } from "@/services/courseService";
 
@@ -73,7 +74,11 @@ function LessonEdit() {
 
                 setCourse(courseData);
                 setChapter(selectedChapter);
-                setLesson(selectedLesson);
+                const hydratedLesson = selectedLesson.type === "quiz"
+                    ? { ...selectedLesson, content: await getQuizForLesson(lessonId) }
+                    : selectedLesson;
+
+                setLesson(hydratedLesson);
 
             } catch (error) {
                 setError(error.message);
@@ -104,7 +109,11 @@ function LessonEdit() {
                 id,
                 chapterId,
                 lessonId,
-                formData
+                {
+                    ...formData,
+                    position: lesson.position,
+                    isLocked: formData.lock?.enabled ?? false,
+                }
             );
 
             // Return to course detail after update

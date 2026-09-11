@@ -28,26 +28,26 @@ const generateCourseId = () => {
 export const courseHandlers = [
 
     // GET /api/courses/:id
-    http.get("/api/courses/:id", ({ params }) => {
-        const courseId = Number(params.id);
+    // http.get("/api/courses/:id", ({ params }) => {
+    //     const courseId = Number(params.id);
 
-        const course = courses.find(
-            (course) => course.id === courseId
-        );
+    //     const course = courses.find(
+    //         (course) => course.id === courseId
+    //     );
 
-        if (!course) {
-            return HttpResponse.json(
-                {
-                    message: "Course not found",
-                },
-                {
-                    status: 404,
-                }
-            );
-        }
+    //     if (!course) {
+    //         return HttpResponse.json(
+    //             {
+    //                 message: "Course not found",
+    //             },
+    //             {
+    //                 status: 404,
+    //             }
+    //         );
+    //     }
 
-        return HttpResponse.json(course);
-    }),
+    //     return HttpResponse.json(course);
+    // }),
 
 
     // POST /api/courses

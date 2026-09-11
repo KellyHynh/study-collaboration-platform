@@ -1,12 +1,11 @@
 import { useState } from "react";
-import courses from "@/mocks/data/courses";
 import CourseCard from "@/components/CourseCard/CourseCard";
 import bem from "@/utils/bem";
 import "./MyCourses.scss";
 import { useNavigate } from "react-router-dom";
 
 const b = bem("my-courses");
-function MyCourses() {
+function MyCourses({ courses }) {
     const [filter, setFilter] = useState("all");
 
     const navigate = useNavigate();

@@ -9,8 +9,7 @@ const b = bem("course-overview");
 function Overview({ course, isOwner = false,}) {
     const navigate = useNavigate();
 
-    const hasRequirements =
-        course.requirements?.content?.length > 0;
+    const hasRequirements = course.requirements?.length > 0;
 
     return (
         <section className={b()}>
@@ -73,9 +72,16 @@ function Overview({ course, isOwner = false,}) {
                         Yêu cầu đầu vào
                     </h2>
 
-                    <RichTextRenderer
-                        content={course.requirements}
-                    />
+                    <ul className={b("outcomes")}>
+                        {course.requirements.map((item, index) => (
+                            <li className={b("outcome")} key={index}>
+                                <span className={b("outcome-icon")}>
+                                    <Icon name="done" />
+                                </span>
+                                <span>{item}</span>
+                            </li>
+                        ))}
+                    </ul>
                 </section>
             )}
 

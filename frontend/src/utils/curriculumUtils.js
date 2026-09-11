@@ -7,7 +7,7 @@ export function parseDuration(durationSeconds) {
         return 0;
     }
 
-    const parts = duration.split(":").map(Number);
+    const parts = durationSeconds.split(":").map(Number);
 
     if (
         parts.length === 2 &&
@@ -88,5 +88,9 @@ export function getLessonStatus(
     lesson,
     lessonProgress = {}
 ) {
-    return lessonProgress[lesson.id] || "locked";
+    if (lesson?.isLocked === true) {
+        return "locked";
+    }
+
+    return lessonProgress[lesson.id] || "current";
 }

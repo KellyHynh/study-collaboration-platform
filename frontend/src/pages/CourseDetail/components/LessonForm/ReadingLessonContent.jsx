@@ -19,7 +19,15 @@ function ReadingLessonContent({
     );
 
     const [attachments, setAttachments] =
-        useState(value?.attachments || []);
+        useState((value?.attachments || []).map((attachment) => ({
+            ...attachment,
+            type: attachment.type || getFileTypeFromMime(attachment.mimeType),
+            previewUrl: attachment.previewUrl || attachment.fileUrl,
+        })));
+
+    function getFileTypeFromMime(mimeType) {
+        return mimeType === "application/pdf" ? "pdf" : "file";
+    }
 
     // Update reading body
     function handleBodyChange(newContent) {
@@ -43,31 +51,26 @@ function ReadingLessonContent({
             selectedFiles
         );
 
-        const newAttachments =
-            selectedFiles.map((file) => ({
-                id: crypto.randomUUID(),
-                file,
-                fileName: file.name,
-                mimeType: file.type,
-                type: getFileType(file),
-                previewUrl:
-                    file.type ===
-                    "application/pdf"
-                        ? URL.createObjectURL(file)
-                        : null,
-                isPreviewOpen: false,
-            }));
+        selectedFiles.forEach((file) => {
+            const reader = new FileReader();
 
-        const updatedAttachments = [
-            ...attachments,
-            ...newAttachments,
-        ];
+            reader.onload = () => {
+                const newAttachment = {
+                    id: crypto.randomUUID(),
+                    fileUrl: reader.result,
+                    fileName: file.name,
+                    mimeType: file.type,
+                    type: getFileType(file),
+                    previewUrl: reader.result,
+                    isPreviewOpen: false,
+                };
+                const updatedAttachments = [...attachments, newAttachment];
 
-        setAttachments(updatedAttachments);
+                setAttachments(updatedAttachments);
+                onChange?.({ body, attachments: updatedAttachments });
+            };
 
-        onChange?.({
-            body,
-            attachments: updatedAttachments,
+            reader.readAsDataURL(file);
         });
     }
 
@@ -96,19 +99,6 @@ function ReadingLessonContent({
     function handleRemoveAttachment(
         attachmentId
     ) {
-        const attachment =
-            attachments.find(
-                (item) =>
-                    item.id === attachmentId
-            );
-
-        // Release temporary preview URL
-        if (attachment?.previewUrl) {
-            URL.revokeObjectURL(
-                attachment.previewUrl
-            );
-        }
-
         const updatedAttachments =
             attachments.filter(
                 (item) =>
@@ -121,6 +111,7 @@ function ReadingLessonContent({
             body,
             attachments: updatedAttachments,
         });
+
     }
 
     // Toggle PDF preview
@@ -159,8 +150,8 @@ function ReadingLessonContent({
                 </label>
 
                 <div className={b("editor")}>
-                    <RichTextEditor
-                        content={body}
+                        <RichTextEditor
+                            value={body}
                         onChange={handleBodyChange}
                     />
                 </div>

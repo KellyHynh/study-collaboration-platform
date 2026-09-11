@@ -12,7 +12,6 @@ import "./LessonForm.scss";
 const b = bem("lesson-form");
 
 function LessonForm({
-    course,
     chapter,
     lesson = null,
     mode = "create",
@@ -36,13 +35,18 @@ function LessonForm({
     );
 
     const [lockEnabled, setLockEnabled] = useState(
-        lesson?.lock?.enabled || false
+        lesson?.lock?.enabled ?? lesson?.isLocked ?? false
     );
 
     // Lesson content
-    const [content, setContent] = useState(
-        lesson?.content || null
-    );
+    const [content, setContent] = useState(() => {
+        if (!lesson) return null;
+
+        return {
+            ...(lesson.content || {}),
+            ...(lesson.video ? { video: lesson.video } : {}),
+        };
+    });
 
     // Handle lesson form submit
     function handleSubmit(event) {

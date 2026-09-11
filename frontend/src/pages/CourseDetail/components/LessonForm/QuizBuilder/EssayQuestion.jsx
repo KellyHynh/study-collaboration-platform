@@ -39,32 +39,24 @@ function EssayQuestion({
             return;
         }
 
-        // Create temporary preview URL
-        const previewUrl =
-            URL.createObjectURL(file);
-
-        onChange?.(
+        const reader = new FileReader();
+        reader.onload = () => onChange?.(
             question.id,
             {
                 ...question,
                 image: {
-                    file,
+                    imageUrl: reader.result,
                     fileName: file.name,
                     mimeType: file.type,
-                    previewUrl,
+                    previewUrl: reader.result,
                 },
             }
         );
+        reader.readAsDataURL(file);
     }
 
     // Remove question image
     function handleRemoveImage() {
-        if (question.image?.previewUrl) {
-            URL.revokeObjectURL(
-                question.image.previewUrl
-            );
-        }
-
         onChange?.(
             question.id,
             {

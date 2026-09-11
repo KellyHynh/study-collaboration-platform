@@ -110,10 +110,9 @@ function CourseCreate({ mode = "create" }) {
                         data.learningOutcomes?.length
                             ? data.learningOutcomes
                             : [""],
-                    requirements:
-                        data.requirements?.length
-                            ? data.requirements
-                            : [""],
+                    requirements: Array.isArray(data.requirements) && data.requirements.length
+                        ? data.requirements
+                        : [""],
                     visibility:
                         data.visibility ?? "public",
                 });
@@ -134,9 +133,12 @@ function CourseCreate({ mode = "create" }) {
 
         if (!file) return;
 
-        const imageUrl = URL.createObjectURL(file);
+        const reader = new FileReader();
 
-        updateField("thumbnailUrl", imageUrl);
+        reader.onload = () =>
+            updateField("thumbnailUrl", reader.result);
+
+        reader.readAsDataURL(file);
     };
 
     // ----- Tags -----
@@ -239,11 +241,12 @@ function CourseCreate({ mode = "create" }) {
                     .map((item) => item.trim())
                     .filter(Boolean),
 
-            requirements:
-                course.requirements
-                    .map((item) => item.trim())
-                    .filter(Boolean),
+            requirements: course.requirements
+                .map((item) => item.trim())
+                .filter(Boolean),
         };
+
+        if (!payload.categoryId) return;
 
         try {
             if (isEdit) {
@@ -672,66 +675,41 @@ function CourseCreate({ mode = "create" }) {
                         <button
                             type="button"
                             className={b("add-link")}
-                            onClick={() =>
-                                addListItem(
-                                    "requirements"
-                                )
-                            }
+                            onClick={() => addListItem("requirements")}
                         >
                             <Icon name="plus" />
                             Thêm
                         </button>
-
                     </div>
 
-
                     <div className={b("list")}>
-
-                        {course.requirements.map(
-                            (item, index) => (
-                                <div
-                                    className={b("list-item")}
-                                    key={index}
-                                >
-
-                                    <span
-                                        className={b("icon-dot")}
-                                    />
-
-                                    <input
-                                        type="text"
-                                        value={item}
-                                        onChange={(event) =>
-                                            updateListItem(
-                                                "requirements",
-                                                index,
-                                                event.target.value
-                                            )
-                                        }
-                                        placeholder={`Yêu cầu ${index + 1}...`}
-                                    />
-
-                                    {course.requirements.length >
-                                        1 && (
-                                        <button
-                                            type="button"
-                                            className={b("remove-item")}
-                                            onClick={() =>
-                                                removeListItem(
-                                                    "requirements",
-                                                    index
-                                                )
-                                            }
-                                            aria-label="Xóa yêu cầu"
-                                        >
-                                            <Icon name="close" />
-                                        </button>
+                        {course.requirements.map((item, index) => (
+                            <div className={b("list-item")} key={index}>
+                                <span className={b("icon-done")}>
+                                    <Icon name="done" />
+                                </span>
+                                <input
+                                    type="text"
+                                    value={item}
+                                    onChange={(event) => updateListItem(
+                                        "requirements",
+                                        index,
+                                        event.target.value
                                     )}
-
-                                </div>
-                            )
-                        )}
-
+                                    placeholder={`Yêu cầu ${index + 1}...`}
+                                />
+                                {course.requirements.length > 1 && (
+                                    <button
+                                        type="button"
+                                        className={b("remove-item")}
+                                        onClick={() => removeListItem("requirements", index)}
+                                        aria-label="Xóa yêu cầu"
+                                    >
+                                        <Icon name="close" />
+                                    </button>
+                                )}
+                            </div>
+                        ))}
                     </div>
 
                 </section>

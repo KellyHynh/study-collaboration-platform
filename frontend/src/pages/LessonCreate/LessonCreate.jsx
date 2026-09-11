@@ -81,7 +81,11 @@ function LessonCreate() {
             await createLesson(
                 id,
                 chapterId,
-                formData
+                {
+                    ...formData,
+                    position: (chapter.lessons || []).length + 1,
+                    isLocked: formData.lock?.enabled ?? false,
+                }
             );
 
             // Return to course detail after creation

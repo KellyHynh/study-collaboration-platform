@@ -21,6 +21,7 @@ function ChapterItem({
     courseId,
     isOwner,
     onDeleteLesson,
+    onDeleteChapter,
 }) {
     const navigate = useNavigate();
 
@@ -44,8 +45,13 @@ function ChapterItem({
     function handleDeleteChapter(event) {
         event.stopPropagation();
 
-        // Delete API will be connected later
-        console.log("Delete chapter:", chapter.id);
+        const confirmed = window.confirm(
+            "Bạn có chắc muốn xóa chương này?"
+        );
+
+        if (confirmed) {
+            onDeleteChapter?.(chapter.id);
+        }
     }
 
     return (
@@ -131,7 +137,7 @@ function ChapterItem({
             {isExpanded && (
                 <div className={b("lessons")}>
 
-                    {chapter.lessons.map((lesson) => (
+                    {(chapter.lessons || []).map((lesson) => (
                         <LessonItem
                             key={lesson.id}
                             lesson={lesson}

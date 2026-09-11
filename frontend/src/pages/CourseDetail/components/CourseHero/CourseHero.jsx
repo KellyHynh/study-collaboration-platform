@@ -7,7 +7,7 @@ import "./CourseHero.scss";
 const b = bem("course-hero");
 
 function CourseHero({ course, enrollment }) {
-    const isCompleted = enrollment?.progress === 100;
+    const isCompleted = enrollment?.completedAt != null;
 
     return (
         <section className={b()}>
@@ -29,17 +29,18 @@ function CourseHero({ course, enrollment }) {
                 <div className={b("tags")}>
 
                     <span className={b("tag")}>
-                        {course.category || course.categoryId}
+                        {course.category?.name || course.categoryId}
                     </span>
 
-                    {course.tags?.map((tag) => (
-                        <span
-                            key={tag}
-                            className={b("tag")}
-                        >
-                            {tag}
-                        </span>
-                    ))}
+                    {Array.isArray(course.tags) &&
+                        course.tags.map((tag) => (
+                            <span
+                                key={tag}
+                                className={b("tag")}
+                            >
+                                {tag}
+                            </span>
+                        ))}
 
                     {enrollment && (
                         <span className={b("status")}>
@@ -65,28 +66,38 @@ function CourseHero({ course, enrollment }) {
 
                 <div className={b("meta")}>
 
-                    <div className={b("rating")}>
-                        <RatingStars rating={course.rating} />
+                    {course.rating !== undefined && (
+                        <div className={b("rating")}>
+                            <RatingStars
+                                rating={course.rating}
+                            />
 
+                            <span>
+                                {course.rating}
+                            </span>
+                        </div>
+                    )}
+
+                    {course.students !== undefined && (
                         <span>
-                            {course.rating}
+                            <Icon name="users" size={16} />
+                            {course.students.toLocaleString()} học viên
                         </span>
-                    </div>
+                    )}
 
-                    <span>
-                        <Icon name="users" size={16} />
-                        {course.students?.toLocaleString()} học viên
-                    </span>
+                    {course.duration && (
+                        <span>
+                            <Icon name="time" size={16} />
+                            {course.duration}
+                        </span>
+                    )}
 
-                    <span>
-                        <Icon name="time" size={16} />
-                        {course.duration}
-                    </span>
-
-                    <span>
-                        <Icon name="zap" size={16} />
-                        {course.level}
-                    </span>
+                    {course.level && (
+                        <span>
+                            <Icon name="zap" size={16} />
+                            {course.level}
+                        </span>
+                    )}
 
                 </div>
 
