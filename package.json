@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "msw": "^2.15.0",
+    "vite-plugin-svgr": "^5.2.0"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  }
+}

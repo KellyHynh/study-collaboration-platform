@@ -1,0 +1,81 @@
+.course-card-mini {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border-color: #e0e0e0;
+    }
+
+    // ===== Thumbnail 60x60, bo góc, zoom nhẹ khi hover =====
+    &__image {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        object-fit: cover;
+        flex-shrink: 0;
+        transition: transform 0.25s ease;
+        overflow: hidden; // phòng khi cha có overflow riêng, ảnh không tràn ra ngoài bo góc
+    }
+
+    &:hover &__image {
+        transform: scale(1.08);
+    }
+
+    // ===== Content =====
+    &__content {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        text-align: left;
+    }
+
+    &__name {
+        font-size: 15px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__instructor {
+        font-size: 13px;
+        color: #8b5cf6; // tím nhạt như trong ảnh
+        margin: 0;
+    }
+
+    &__meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 2px;
+        font-size: 13px;
+        color: #6b7280;
+    }
+
+    &__students {
+        white-space: nowrap;
+    }
+
+    // ===== Arrow - đổi màu indigo khi hover =====
+    &__arrow {
+        flex-shrink: 0;
+        color: #9ca3af; // xám mặc định
+        transition: color 0.2s ease;
+    }
+
+    &:hover &__arrow {
+        color: #6366f1; // indigo khi hover
+    }
+}

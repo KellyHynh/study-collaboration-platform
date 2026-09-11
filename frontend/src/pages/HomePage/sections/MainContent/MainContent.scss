@@ -1,0 +1,19 @@
+// MainContent.scss
+.main-content { // đổi đúng tên block thật
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+
+    // Cách 1: dùng :not(:first-child) - áp border-top cho mọi section con trừ cái đầu tiên
+    // Linh hoạt nếu sau này thêm section thứ 3, thứ 4... đều tự động có viền ngăn cách
+    > * {
+        &:not(:first-child) {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        &:not(:last-child) {
+            padding-bottom: 20px;
+        }
+    }
+}

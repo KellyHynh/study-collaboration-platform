@@ -1,0 +1,169 @@
+.chapter-item {
+    background-color: #fff;
+    border: 1px solid #e2e2e7;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+    &__header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 24px;
+        background: none;
+        text-align: left;
+        box-sizing: border-box;
+    }
+
+    // Area used to expand or collapse the chapter
+    &__toggle {
+        flex: 1;
+        min-width: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+
+        padding: 0;
+        border: none;
+        background: none;
+
+        cursor: pointer;
+        text-align: left;
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 0;
+    }
+
+    &__title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #111827;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__progress-count {
+        font-size: 13px;
+        color: #9ca3af;
+    }
+
+    &__meta {
+        flex-shrink: 0;
+
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        > svg {
+            width: 18px;
+            height: 18px;
+            color: #6b7280;
+        }
+    }
+
+    &__duration {
+        font-size: 13px;
+        color: #9ca3af;
+        white-space: nowrap;
+    }
+
+    &__progress {
+        display: block;
+        width: 40px;
+        height: 4px;
+        border-radius: 999px;
+        background-color: #ede9fe;
+        overflow: hidden;
+    }
+
+    &__progress-bar {
+        display: block;
+        height: 100%;
+        border-radius: 999px;
+        background-color: #7c3aed;
+    }
+
+    // Owner action buttons
+    &__actions {
+        flex-shrink: 0;
+
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        // Hidden until the chapter is hovered
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transition:
+            opacity 0.15s ease,
+            visibility 0.15s ease;
+    }
+
+    // Show owner actions when hovering the chapter
+    &:hover &__actions {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    // Individual owner action
+    &__action {
+        width: 30px;
+        height: 30px;
+
+        flex-shrink: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 0;
+
+        border: none;
+        border-radius: 6px;
+
+        background: transparent;
+        color: #6b7280;
+
+        cursor: pointer;
+
+        transition:
+            background-color 0.15s ease,
+            color 0.15s ease;
+
+        svg {
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
+
+        &:hover {
+            background-color: #f3f4f6;
+            color: #111827;
+        }
+
+        // Delete action
+        &--delete {
+            color: #9ca3af;
+
+            &:hover {
+                background-color: #fef2f2;
+                color: #dc2626;
+            }
+        }
+    }
+
+    &__lessons {
+        border-top: 2px solid #f1f1f4;
+    }
+}

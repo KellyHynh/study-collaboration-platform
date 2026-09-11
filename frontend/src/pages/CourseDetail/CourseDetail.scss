@@ -1,0 +1,34 @@
+.course-detail {
+    background-color: #f7f7f9;
+    min-height: 100vh;
+
+    &__content {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 32px;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 32px 40px;
+
+        @media (max-width: 960px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__main {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        overflow: hidden;
+    }
+
+    &__tab-content {
+        padding: 32px 40px;
+    }
+
+    &__sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+}

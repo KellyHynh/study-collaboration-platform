@@ -1,0 +1,26 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+
+    &__icon {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+    }
+
+    &__text {
+        font-family: "Poppins", "Segoe UI", sans-serif; /* đổi thành font bạn thích */
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+
+        /* gradient chữ đen -> tím */
+        background: linear-gradient(90deg, #1a1a1a 0%, #6a0dad 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent; /* fallback cho trình duyệt không hỗ trợ background-clip */
+    }
+}
