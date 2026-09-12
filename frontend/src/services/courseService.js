@@ -1,4 +1,5 @@
 import { CURRENT_USER } from "@/config/currentUser";
+import { apiUrl } from "@/config/api";
 
 async function parseResponse(response, fallbackMessage) {
     const data = await response.json().catch(() => ({}));
@@ -33,7 +34,7 @@ async function resolveCategoryId(categoryId) {
     }
 
     const categories = await parseResponse(
-        await fetch("/api/categories"),
+        await fetch(apiUrl("/api/categories")),
         "Failed to fetch categories"
     );
 
@@ -46,7 +47,7 @@ async function resolveCategoryId(categoryId) {
     if (category) return category.id;
 
     const createdCategory = await parseResponse(
-        await fetch("/api/categories", {
+        await fetch(apiUrl("/api/categories"), {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: String(categoryId).trim() }),
@@ -59,7 +60,7 @@ async function resolveCategoryId(categoryId) {
 
 export async function getCourses() {
     const data = await parseResponse(
-        await fetch("/api/courses"),
+        await fetch(apiUrl("/api/courses")),
         "Failed to fetch courses"
     );
 
@@ -68,13 +69,13 @@ export async function getCourses() {
 
 export async function getCategories() {
     return parseResponse(
-        await fetch("/api/categories"),
+        await fetch(apiUrl("/api/categories")),
         "Failed to fetch categories"
     );
 }
 
 export async function getCourseById(id) {
-    const response = await fetch(`/api/courses/${id}`);
+    const response = await fetch(apiUrl(`/api/courses/${id}`));
     return normalizeCourse(
         await parseResponse(response, "Failed to fetch course")
     );
@@ -82,9 +83,9 @@ export async function getCourseById(id) {
 
 
 export async function getCourseEnrollment(id) {
-    const response = await fetch(
+    const response = await fetch(apiUrl(
         `/api/courses/${id}/enrollment`
-    );
+    ));
 
     if (!response.ok) {
         throw new Error("Failed to fetch enrollment");
@@ -99,8 +100,8 @@ export async function createCourse(courseData) {
         courseData.categoryId
     );
 
-    const response = await fetch(
-        "/api/courses",
+    const response = await fetch(apiUrl(
+        "/api/courses"),
         {
             method: "POST",
 
@@ -128,8 +129,8 @@ export async function updateCourse(id, courseData) {
         courseData.categoryId
     );
 
-    const response = await fetch(
-        `/api/courses/${id}`,
+    const response = await fetch(apiUrl(
+        `/api/courses/${id}`),
         {
             method: "PATCH",
             headers: {
@@ -149,9 +150,9 @@ export async function updateCourse(id, courseData) {
 }
 
 export async function getCourseCurriculum(id) {
-    const response = await fetch(
+    const response = await fetch(apiUrl(
         `/api/courses/${id}/curriculum`
-    );
+    ));
 
     if (!response.ok) {
         throw new Error(
@@ -164,9 +165,9 @@ export async function getCourseCurriculum(id) {
 
 
 export async function getCourseLessonProgress(id) {
-    const response = await fetch(
+    const response = await fetch(apiUrl(
         `/api/courses/${id}/progress`
-    );
+    ));
 
     if (!response.ok) {
         throw new Error(
@@ -178,9 +179,9 @@ export async function getCourseLessonProgress(id) {
 }
 
 export async function getLessonById(id) {
-    const response = await fetch(
+    const response = await fetch(apiUrl(
         `/api/lessons/${id}`
-    );
+    ));
 
     if (!response.ok) {
         const data = await response.json();
@@ -194,16 +195,16 @@ export async function getLessonById(id) {
 }
 
 export async function getQuizForLesson(lessonId) {
-    const quizResponse = await fetch(`/api/quizzes/${lessonId}`);
+    const quizResponse = await fetch(apiUrl(`/api/quizzes/${lessonId}`));
     if (!quizResponse.ok) {
         const data = await quizResponse.json().catch(() => ({}));
         throw new Error(data.message || "Failed to fetch quiz");
     }
 
     const quiz = await quizResponse.json();
-    const questionsResponse = await fetch(
+    const questionsResponse = await fetch(apiUrl(
         `/api/quiz-questions/quizzes/${quiz.lessonId}`
-    );
+    ));
     if (!questionsResponse.ok) {
         throw new Error("Failed to fetch quiz questions");
     }
@@ -227,9 +228,9 @@ export async function getQuizForLesson(lessonId) {
                 return { ...hydratedQuestion, options: [] };
             }
 
-            const optionsResponse = await fetch(
+            const optionsResponse = await fetch(apiUrl(
                 `/api/quiz-options/questions/${question.id}`
-            );
+            ));
             if (!optionsResponse.ok) {
                 throw new Error("Failed to fetch quiz options");
             }
@@ -247,7 +248,7 @@ export async function getQuizForLesson(lessonId) {
 export async function markLessonComplete(lessonId) {
     const userId = CURRENT_USER.id;
     const completedAt = new Date().toISOString();
-    const createResponse = await fetch("/api/lesson-progress", {
+    const createResponse = await fetch(apiUrl("/api/lesson-progress"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, lessonId }),
@@ -262,8 +263,8 @@ export async function markLessonComplete(lessonId) {
 }
 
 async function updateLessonProgress(userId, lessonId, completedAt, fallback) {
-    const response = await fetch(
-        `/api/lesson-progress/${userId}/${lessonId}`,
+    const response = await fetch(apiUrl(
+        `/api/lesson-progress/${userId}/${lessonId}`),
         {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
@@ -281,8 +282,8 @@ async function updateLessonProgress(userId, lessonId, completedAt, fallback) {
 }
 
 export async function createChapter(courseId, title, position) {
-    const response = await fetch(
-        `/api/chapters/courses/${courseId}`,
+    const response = await fetch(apiUrl(
+        `/api/chapters/courses/${courseId}`),
         {
             method: "POST",
             headers: {
@@ -313,8 +314,8 @@ export async function createLesson(
     chapterId,
     lessonData
 ) {
-    const response = await fetch(
-        `/api/lessons/chapters/${chapterId}`,
+    const response = await fetch(apiUrl(
+        `/api/lessons/chapters/${chapterId}`),
         {
             method: "POST",
             headers: {
@@ -350,8 +351,8 @@ export async function updateLesson(
     lessonId,
     lessonData
 ) {
-    const response = await fetch(
-        `/api/lessons/${lessonId}`,
+    const response = await fetch(apiUrl(
+        `/api/lessons/${lessonId}`),
         {
             method: "PATCH",
             headers: {
@@ -386,8 +387,8 @@ export async function deleteLesson(
     chapterId,
     lessonId
 ) {
-    const response = await fetch(
-        `/api/lessons/${lessonId}`,
+    const response = await fetch(apiUrl(
+        `/api/lessons/${lessonId}`),
         {
             method: "DELETE",
         }
@@ -412,8 +413,8 @@ export async function deleteLesson(
 }
 
 export async function deleteChapter(chapterId) {
-    const response = await fetch(
-        `/api/chapters/${chapterId}`,
+    const response = await fetch(apiUrl(
+        `/api/chapters/${chapterId}`),
         {
             method: "DELETE",
         }
