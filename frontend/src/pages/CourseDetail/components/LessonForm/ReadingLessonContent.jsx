@@ -3,7 +3,7 @@ import { useState } from "react";
 import RichTextEditor from "@/components/RichTextEditor/RichTextEditor";
 import FileUpload from "@/components/FileUpload/FileUpload";
 import Icon from "@/components/Icon/Icon";
-import "./ReadingLessonCOntent.scss"
+import "./ReadingLessonContent.scss"
 import bem from "@/utils/bem";
 // Reusable file preview
 import FilePreview from "@/components/FilePreview/FilePreview";
